@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="UfJR0mzHbU-YKOqtUuV24g" Reference="8BpuFSLbfU-l7uzrMDPDhA/jjGSXpK400qU8Dli19F0Ow" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="oqood2.dubailand.gov.ae/en/services" DesignTimeRectangle="1401, 636, 113, 40" ElementType="Button" ElementVisibilityArgument="Interactive" FuzzyAccuracy="0.9" FuzzySelectorArgument="&lt;webctrl aaname='View Services' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' tag='BUTTON' type='button' check:innerText='View Services' /&gt;" Guid="7839545b-7d34-49a5-b9ab-be75b45faf9a" IsResponsive="True" ScopeSelectorArgument="&lt;html app='chrome.exe' title='*' /&gt;" SearchSteps="FuzzySelector" Version="V6" WaitForReadyArgument="Complete">
+      <TargetAnchorable.Anchors>
+        <scg:List x:TypeArguments="ITarget" Capacity="4">
+          <Target DesignTimeRectangle="1401, 538, 462, 20" ElementType="Text" FuzzyAccuracy="0.9" FuzzySelectorArgument="&lt;webctrl aaname='Property Sale' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' tag='P' check:innerText='Property Sale' /&gt;" Guid="d45b5050-447c-480a-b822-4140a0e43d12" SearchSteps="FuzzySelector" />
+        </scg:List>
+      </TargetAnchorable.Anchors>
+      <imageRef attrName="InformativeScreenshot" originalValue="4226a43c7a0e6f989cd698b91ae50346.jpg" xmlns="">05qNTswMn5UqneoKgqhWY7A</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">Click</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

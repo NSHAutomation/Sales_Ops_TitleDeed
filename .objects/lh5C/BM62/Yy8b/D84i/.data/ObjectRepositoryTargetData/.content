@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="Z3tUc3J6Fk6PXButm7yyzw" Reference="8BpuFSLbfU-l7uzrMDPDhA/D84igRvIVESKUNRnotzUiw" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="oqood2.dubailand.gov.ae/en/services/workflows/complete-delayed-sale" DesignTimeRectangle="1755, 413, 47, 24" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl tag='DIV' visibleinnertext='Complete Delayed Sell*' /&gt;&lt;webctrl tag='P' aaname='*' /&gt;" Guid="944b9058-45de-4bb3-ae74-5fbd1ade7b5c" IsResponsive="True" ScopeSelectorArgument="&lt;html app='chrome.exe' title='*' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Complete">
+      <imageRef attrName="InformativeScreenshot" originalValue="89de706cb5816468537946ae92b3709d.jpg" xmlns="">0lJ7yc7jy1UeimQHIBy2vpA</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">GetText</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

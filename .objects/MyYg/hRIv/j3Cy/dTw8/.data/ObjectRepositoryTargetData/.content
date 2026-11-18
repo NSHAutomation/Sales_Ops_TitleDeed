@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="fPF1jkZ-IE24MlB11yV_cw" Reference="8BpuFSLbfU-l7uzrMDPDhA/dTw8fGs580K5ZhmO8PZVZw" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="nshama--c.vf.force.com/apex/CreateMilestone" DesignTimeRectangle="387, 556, 141, 48" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl tag='TABLE' aaname='Milestone Status *Milestone Date Responsibility Comments' /&gt;&lt;webctrl type='text' tag='TEXTAREA' aaname='Comments' /&gt;" Guid="946d43d8-4cf7-4a45-b8cb-0bd6d3bb0025" IsResponsive="True" ScopeSelectorArgument="&lt;html app='msedge.exe' title='*Salesforce - Unlimited Edition*' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Complete">
+      <imageRef attrName="InformativeScreenshot" originalValue="073e57c46b2f8df3b1a5729b4943a485.jpg" xmlns="">0AlXNVyqAhk6nFolAL9QkZQ</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">TypeInto</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

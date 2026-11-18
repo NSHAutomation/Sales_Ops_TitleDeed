@@ -1,0 +1,735 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="dld_2_0_FinalPayment" this:dld_2_0_FinalPayment.in_TransactionNumber="0" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd2="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:umae="clr-namespace:UiPath.Mail.Activities.Enums;assembly=UiPath.Mail.Activities" xmlns:usau="clr-namespace:UiPath.Shared.Activities.Utils;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_is_JointOwnerFound" Type="InArgument(x:Boolean)" />
+    <x:Property Name="in_dt_JointOwner" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="in_TransactionItem" Type="InArgument(sd:DataRow)" />
+    <x:Property Name="in_JointOwnerPassportNumber" Type="InArgument(x:String)" />
+    <x:Property Name="in_JointOwnerPassportExpireDate" Type="InArgument(x:String)" />
+    <x:Property Name="in_JointOwnerDateOfBirth" Type="InArgument(x:String)" />
+    <x:Property Name="in_TransactionNumber" Type="InArgument(x:Int32)" />
+    <x:Property Name="out_is_ProcessSubmitted" Type="OutArgument(x:Boolean)" />
+    <x:Property Name="out_ProcedureNumber" Type="OutArgument(x:String)" />
+    <x:Property Name="in_CaseStatusColumnIndex" Type="InArgument(x:String)" />
+    <x:Property Name="in_ProcedureNumberColumnIndex" Type="InArgument(x:String)" />
+    <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>dld_2_0_FinalPayment_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationNext.Models</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Platform.SyncObjects</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Models</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.ExtractData</x:String>
+      <x:String>UiPath.Shared.Activities.Business</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Numerics</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>System.Globalization</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+      <x:String>UiPath.BusinessRules.Client</x:String>
+      <x:String>FuzzySharp</x:String>
+      <x:String>UiPath.Mail</x:String>
+      <x:String>UiPath.Mail.Activities.Enums</x:String>
+      <x:String>UiPath.Shared.Activities.Utils</x:String>
+      <x:String>UiPath.Mail.Outlook.Activities</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Linq.AsyncEnumerable</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>NPOI.Core</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>UiPath.BusinessRules.Client</AssemblyReference>
+      <AssemblyReference>FuzzySharp</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="dld_2_0_FinalPayment" sap:VirtualizedContainerService.HintSize="1425,10012" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:Int32" Default="0" Name="currentNumber" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_DLD_OwnerDetails" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_OwnerDetails" />
+      <Variable x:TypeArguments="x:Boolean" Name="is_allValuesMatch" />
+      <Variable x:TypeArguments="x:String" Name="mismatchStatus" />
+      <Variable x:TypeArguments="x:Boolean" Name="is_ProcedureNumberGenerated" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Sequence DisplayName="Sequence-Final Payment" sap:VirtualizedContainerService.HintSize="794,9989" sap2010:WorkflowViewState.IdRef="Sequence_2">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <TryCatch DisplayName="Try Catch-Final Payment" sap:VirtualizedContainerService.HintSize="760,9906" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+        <TryCatch.Try>
+          <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="758,9286" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:BuildDataTable DataTable="[dt_OwnerDetails]" DisplayName="Build Data Table-Data Table for sf owner details" sap:VirtualizedContainerService.HintSize="724,92" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Account_x0020_Name&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;Passport_x0020_Number&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Passport_x0020_Expiry_x0020_Date&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Date_x0020_of_x0020_Birth&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Nationality&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Shares_x0020_Allocated&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
+            <uix:NApplicationCard AttachMode="ByInstance" DisplayName="DLD 2.0" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="724,9134" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" ScopeGuid="47a27d81-34e4-4114-98a9-47a706fc50c4" Version="V2">
+              <uix:NApplicationCard.Body>
+                <ActivityAction x:TypeArguments="x:Object">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="722,8939" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="x:String" Name="completeDelayedSellFee" />
+                      <Variable x:TypeArguments="x:String" Name="otherFee" />
+                    </Sequence.Variables>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="688,57" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+                      <ui:CommentOut.Body>
+                        <Sequence DisplayName="Ignored activities" sap:VirtualizedContainerService.HintSize="650,108" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:WriteRange StartingCell="{x:Null}" DataTable="[dt_DLD_OwnerDetails]" DisplayName="Write Range Workbook" sap:VirtualizedContainerService.HintSize="616,48" sap2010:WorkflowViewState.IdRef="WriteRange_1" SheetName="Sheet1" WorkbookPath="C:\Users\SalesBot\Desktop\UiPath\SalesOps\SalesOps_TitleDeed\Data\Input\ExportData.xlsx">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:WriteRange>
+                        </Sequence>
+                      </ui:CommentOut.Body>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:CommentOut>
+                    <uix:NExtractDataGeneric x:TypeArguments="sd:DataTable" ContinueOnError="True" DisplayName="Extract Table Data 'Owner Details'" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Structured' AddCvHeader='true' IsScrollEnabled='false'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column0' Name='Owner Details'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract&gt;&lt;column exact='1' name='Column0' attr='fulltext'&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' /&gt;&lt;/column&gt;&lt;/extract&gt;" ExtractedData="[dt_DLD_OwnerDetails]" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="688,57" sap2010:WorkflowViewState.IdRef="NExtractDataGeneric`1_1" InteractionMode="DebuggerApi" LimitExtractionTo="None" MaximumResults="0" ScopeIdentifier="47a27d81-34e4-4114-98a9-47a706fc50c4" Version="V5">
+                      <uix:NExtractDataGeneric.Target>
+                        <uix:TargetAnchorable BrowserURL="https://oqood2.dubailand.gov.ae/en/services/workflows/complete-delayed-sale?id=eqdldwlq5x3z3e8hho8o054u" DesignTimeRectangle="8, 129, 1920, 919" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl tag='BODY' /&gt;" Guid="22e61b60-aafb-4efb-a0e7-ec8820c9c5f7" InformativeScreenshot="5442806850c691c79a5d80c0c0949750.jpg" IsResponsive="True" ScopeSelectorArgument="&lt;html app='chrome.exe' title='OQood' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="[UiPath.UIAutomationNext.Enums.NWaitForReady.Complete]" />
+                      </uix:NExtractDataGeneric.Target>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          <x:String x:Key="bbbffa17-1024-47ac-a79a-41b860f664d0">Share</x:String>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </uix:NExtractDataGeneric>
+                    <uix:NMouseScroll KeyModifiers="{x:Null}" Direction="Down" DisplayName="Mouse Scroll-Request Fee" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="688,315" sap2010:WorkflowViewState.IdRef="NMouseScroll_2" InteractionMode="HardwareEvents" MovementUnits="10" ScopeIdentifier="47a27d81-34e4-4114-98a9-47a706fc50c4" Version="V5">
+                      <uix:NMouseScroll.SearchedElement>
+                        <uix:SearchedElement>
+                          <uix:SearchedElement.InUiElement>
+                            <InArgument x:TypeArguments="ui:UiElement" />
+                          </uix:SearchedElement.InUiElement>
+                          <uix:SearchedElement.OutUiElement>
+                            <OutArgument x:TypeArguments="ui:UiElement" />
+                          </uix:SearchedElement.OutUiElement>
+                          <uix:SearchedElement.Target>
+                            <uix:TargetAnchorable BrowserURL="oqood2.dubailand.gov.ae/en/services/workflows/complete-delayed-sale" ContentHash="6hdOkoj0LUWuBm2kKMt4vw" DesignTimeRectangle="348, 239, 1493, 24" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl tag='H6' aaname='Request Fees' /&gt;" Guid="d78f24c3-50ed-4b37-a8f3-70e65b18c0c3" InformativeScreenshot="aac3aa3c5e8a0c61f6874003211d7ce6.jpg" IsResponsive="True" Reference="8BpuFSLbfU-l7uzrMDPDhA/unvLiS28sEWAqdCwkk3zWg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='*' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Complete" />
+                          </uix:SearchedElement.Target>
+                          <uix:SearchedElement.Timeout>
+                            <InArgument x:TypeArguments="x:Double" />
+                          </uix:SearchedElement.Timeout>
+                        </uix:SearchedElement>
+                      </uix:NMouseScroll.SearchedElement>
+                    </uix:NMouseScroll>
+                    <uix:NGetText DisplayName="Get Text 'Complete Delayed Sell Fee'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="688,143" sap2010:WorkflowViewState.IdRef="NGetText_2" ScopeIdentifier="47a27d81-34e4-4114-98a9-47a706fc50c4" TextString="[completeDelayedSellFee]" Version="V5">
+                      <uix:NGetText.Target>
+                        <uix:TargetAnchorable BrowserURL="oqood2.dubailand.gov.ae/en/services/workflows/complete-delayed-sale" ContentHash="Z3tUc3J6Fk6PXButm7yyzw" DesignTimeRectangle="1755, 413, 47, 24" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl tag='DIV' visibleinnertext='Complete Delayed Sell*' /&gt;&lt;webctrl tag='P' aaname='*' /&gt;" Guid="944b9058-45de-4bb3-ae74-5fbd1ade7b5c" InformativeScreenshot="89de706cb5816468537946ae92b3709d.jpg" IsResponsive="True" Reference="8BpuFSLbfU-l7uzrMDPDhA/D84igRvIVESKUNRnotzUiw" ScopeSelectorArgument="&lt;html app='chrome.exe' title='*' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Complete" />
+                      </uix:NGetText.Target>
+                    </uix:NGetText>
+                    <uix:NGetText DisplayName="Get Text 'Other Fee'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="688,143" sap2010:WorkflowViewState.IdRef="NGetText_3" ScopeIdentifier="47a27d81-34e4-4114-98a9-47a706fc50c4" TextString="[otherFee]" Version="V5">
+                      <uix:NGetText.Target>
+                        <uix:TargetAnchorable BrowserURL="oqood2.dubailand.gov.ae/en/services/workflows/complete-delayed-sale" ContentHash="Ug4mxyNPXk-JOuZKYzH_fw" DesignTimeRectangle="1755, 605, 47, 24" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl tag='DIV' class='flex flex-col gap-4 w-full' visibleinnertext='Other Fees*' /&gt;&lt;webctrl tag='P' aaname='*' /&gt;" Guid="ebfbfe42-05e6-49bf-89a1-5d1544d1db14" InformativeScreenshot="6ea8bff76a2e5945129fcfcc86263777.jpg" IsResponsive="True" Reference="8BpuFSLbfU-l7uzrMDPDhA/e1KAWeSZCkWMgYZXaK09OQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='*' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Complete" />
+                      </uix:NGetText.Target>
+                    </uix:NGetText>
+                    <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim result As New DataTable(&quot;Owners&quot;)&#xA;Dim cols() As String = {&quot;Account Name&quot;, &quot;Passport Number&quot;, &quot;Passport Expiry Date&quot;, &quot;EID Number&quot;, &quot;EID Expire Date&quot;, &quot;Date of Birth&quot;, &quot;Nationality&quot;}&#xA;For Each c As String In cols&#xA;    result.Columns.Add(c, GetType(String))&#xA;Next&#xA;&#xA;' Label in the page -&gt; column name in the DataTable&#xA;Dim map As New Dictionary(Of String, String)(StringComparer.OrdinalIgnoreCase)&#xA;map(&quot;Passport Number&quot;) = &quot;Passport Number&quot;&#xA;map(&quot;Passport Expiry Date&quot;) = &quot;Passport Expiry Date&quot;&#xA;map(&quot;EID Number&quot;) = &quot;EID Number&quot;&#xA;map(&quot;EID Expiry Date&quot;) = &quot;EID Expire Date&quot;&#xA;map(&quot;EID Expire Date&quot;) = &quot;EID Expire Date&quot;&#xA;map(&quot;Date of Birth&quot;) = &quot;Date of Birth&quot;&#xA;map(&quot;Nationality&quot;) = &quot;Nationality&quot;&#xA;&#xA;Dim currentRow As DataRow = Nothing&#xA;&#xA;For Each r As DataRow In io_dt.Rows&#xA;    Dim txt As String = &quot;&quot;&#xA;    If Not IsDBNull(r(0)) AndAlso r(0) IsNot Nothing Then txt = r(0).ToString().Trim()&#xA;&#xA;    If txt = &quot;&quot; OrElse txt.Equals(&quot;Owner Details&quot;, StringComparison.OrdinalIgnoreCase) Then Continue For&#xA;&#xA;    Dim lines() As String = txt.Split(New String() {vbCrLf, vbLf, vbCr}, StringSplitOptions.None)&#xA;    For i As Integer = 0 To lines.Length - 1&#xA;        lines(i) = lines(i).Trim()&#xA;    Next&#xA;&#xA;    ' Participant Number is still used here to recognise the details block, but it is not stored&#xA;    Dim isLabelBlock As Boolean = lines.Length &gt;= 2 AndAlso _&#xA;        (lines(0).Equals(&quot;Participant Number&quot;, StringComparison.OrdinalIgnoreCase) OrElse _&#xA;         lines(0).Equals(&quot;Shares Allocated&quot;, StringComparison.OrdinalIgnoreCase))&#xA;&#xA;    If Not isLabelBlock Then&#xA;        ' Name block -&gt; new owner row (English name only, Arabic removed)&#xA;        Dim name As String = lines(0)&#xA;        If name.Contains(&quot;|&quot;) Then name = name.Split(&quot;|&quot;c)(0)&#xA;        name = System.Text.RegularExpressions.Regex.Replace(name, &quot;[\u0600-\u06FF]+&quot;, &quot;&quot;).Trim()&#xA;&#xA;        currentRow = result.NewRow()&#xA;        currentRow(&quot;Account Name&quot;) = name&#xA;        result.Rows.Add(currentRow)&#xA;&#xA;    ElseIf currentRow IsNot Nothing Then&#xA;        ' Label/value pairs -&gt; only the 7 required columns are filled&#xA;        For i As Integer = 0 To lines.Length - 2 Step 2&#xA;            Dim label As String = lines(i)&#xA;            If label = &quot;&quot; Then Continue For&#xA;            If map.ContainsKey(label) Then currentRow(map(label)) = lines(i + 1)&#xA;        Next&#xA;    End If&#xA;Next&#xA;&#xA;io_dt = result" DisplayName="Invoke Code-Convert the extracted owner details into data table format" sap:VirtualizedContainerService.HintSize="688,403" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+                      <ui:InvokeCode.Arguments>
+                        <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_dt">[dt_DLD_OwnerDetails]</InOutArgument>
+                      </ui:InvokeCode.Arguments>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:InvokeCode>
+                    <If Condition="[in_is_JointOwnerFound]" DisplayName="If-Merge All Owners into One DT" sap:VirtualizedContainerService.HintSize="688,2031" sap2010:WorkflowViewState.IdRef="If_1">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <If.Then>
+                        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,1128" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&#xA;&#x9;in_TransactionItem(&quot;Account Name&quot;).ToString,&#xA;&#x9;in_TransactionItem(&quot;Passport No.&quot;).ToString,&#xA;&#x9;DateTime.ParseExact( in_TransactionItem(&quot;Passport Expiry Date&quot;).ToString, &quot;M/d/yyyy&quot;, System.Globalization.CultureInfo.InvariantCulture).ToString(&quot;dd/MM/yyyy&quot;, System.Globalization.CultureInfo.InvariantCulture),&#xA;&#x9;DateTime.ParseExact(in_TransactionItem(&quot;Birth Date&quot;).ToString, &quot;M/d/yyyy&quot;, System.Globalization.CultureInfo.InvariantCulture).ToString(&quot;dd/MM/yyyy&quot;, System.Globalization.CultureInfo.InvariantCulture),&#xA;&#x9;in_TransactionItem(&quot;Nationality&quot;).ToString&#xA;}]" DataTable="[dt_OwnerDetails]" DisplayName="Add Data Row-Primer Owner To Joint Owner" sap:VirtualizedContainerService.HintSize="416,221" sap2010:WorkflowViewState.IdRef="AddDataRow_2">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:AddDataRow>
+                          <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&#xA;&#x9;in_dt_JointOwner.Rows(0)(&quot;Joint Owner&quot;).ToString,&#xA;&#x9;in_JointOwnerPassportNumber,&#xA;&#x9;DateTime.ParseExact(in_JointOwnerPassportExpireDate.Trim(), {&quot;M/d/yyyy H:mm:ss&quot;, &quot;M/d/yyyy&quot;, &quot;M/d/yy H:mm:ss&quot;, &quot;d/M/yy&quot;}, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None).ToString(&quot;dd/MM/yyyy&quot;, System.Globalization.CultureInfo.InvariantCulture),&#xA;&#x9;DateTime.ParseExact(in_JointOwnerDateOfBirth, &quot;MM/dd/yyyy&quot;, System.Globalization.CultureInfo.InvariantCulture).ToString(&quot;dd/MM/yyyy&quot;),&#xA;&#x9;in_dt_JointOwner.Rows(0)(&quot;Nationality&quot;).ToString&#xA;}]" DataTable="[dt_OwnerDetails]" DisplayName="Add Data Row-Joint Owner" sap:VirtualizedContainerService.HintSize="416,221" sap2010:WorkflowViewState.IdRef="AddDataRow_3">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:AddDataRow>
+                          <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="416,57" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+                            <ui:CommentOut.Body>
+                              <Sequence DisplayName="Ignored activities" sap:VirtualizedContainerService.HintSize="650,165" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:InvokeCode ContinueOnError="{x:Null}" Code="' ---- Settings (edit only these to change behaviour) ----&#xA;Dim excludeCols As New System.Collections.Generic.HashSet(Of String) From {&quot;SHARES ALLOCATED&quot;}&#xA;Dim aliases As New System.Collections.Generic.Dictionary(Of String, String) From {&#xA;    {&quot;ACCOUNT NAME&quot;, &quot;NAME&quot;}, {&quot;OWNER NAME&quot;, &quot;NAME&quot;}&#xA;}&#xA;Dim keyOrder() As String = {&quot;PASSPORT NUMBER&quot;, &quot;NAME&quot;}   ' used to pair rows, tried in this order&#xA;&#xA;' ---- Helpers ----&#xA;Dim canon As Func(Of String, String) = Function(h As String) _&#xA;    If(aliases.ContainsKey(h.Trim().ToUpperInvariant()), aliases(h.Trim().ToUpperInvariant()), h.Trim().ToUpperInvariant())&#xA;&#xA;Dim dateRx As New System.Text.RegularExpressions.Regex(&quot;^(\d{1,2})/(\d{1,2})/(\d{2}|\d{4})(\s+\d{1,2}:\d{2}(:\d{2})?)?$&quot;)&#xA;&#xA;Dim norm As Func(Of Object, String) = Function(o As Object)&#xA;                                          If o Is Nothing OrElse IsDBNull(o) Then Return &quot;&quot;&#xA;                                          Dim s As String = System.Text.RegularExpressions.Regex.Replace(o.ToString().Trim(), &quot;\s+&quot;, &quot; &quot;)&#xA;                                          Dim m As System.Text.RegularExpressions.Match = dateRx.Match(s)&#xA;                                          If m.Success Then&#xA;                                              Dim yr As String = m.Groups(3).Value&#xA;                                              Return m.Groups(1).Value.PadLeft(2, &quot;0&quot;c) &amp; &quot;/&quot; &amp; m.Groups(2).Value.PadLeft(2, &quot;0&quot;c) &amp; &quot;/&quot; &amp; yr.Substring(yr.Length - 2)&#xA;                                          End If&#xA;                                          Return s.ToUpperInvariant()&#xA;                                      End Function&#xA;&#xA;' ---- Map: canonical column -&gt; actual column name in each table ----&#xA;Dim map1 As New System.Collections.Generic.Dictionary(Of String, String)&#xA;Dim map2 As New System.Collections.Generic.Dictionary(Of String, String)&#xA;For Each c As System.Data.DataColumn In in_dt1.Columns&#xA;    If Not map1.ContainsKey(canon(c.ColumnName)) Then map1.Add(canon(c.ColumnName), c.ColumnName)&#xA;Next&#xA;For Each c As System.Data.DataColumn In in_dt2.Columns&#xA;    If Not map2.ContainsKey(canon(c.ColumnName)) Then map2.Add(canon(c.ColumnName), c.ColumnName)&#xA;Next&#xA;&#xA;Dim sb As New System.Text.StringBuilder()&#xA;Dim reportedMissingCols As New System.Collections.Generic.HashSet(Of String)&#xA;Dim usedRows As New System.Collections.Generic.HashSet(Of Integer)&#xA;&#xA;If in_dt1.Rows.Count &lt;&gt; in_dt2.Rows.Count Then&#xA;    sb.Append(&quot;Row count mismatch (&quot; &amp; in_dt1.Rows.Count &amp; &quot; vs &quot; &amp; in_dt2.Rows.Count &amp; &quot;); &quot;)&#xA;End If&#xA;&#xA;For i As Integer = 0 To in_dt1.Rows.Count - 1&#xA;    Dim r1 As System.Data.DataRow = in_dt1.Rows(i)&#xA;&#xA;    ' Label for messages (name if available, else row number)&#xA;    Dim label As String = &quot;Row &quot; &amp; (i + 1)&#xA;    If map1.ContainsKey(&quot;NAME&quot;) Then label = r1(map1(&quot;NAME&quot;)).ToString().Trim()&#xA;&#xA;    ' Find matching row in table 2&#xA;    Dim matchIdx As Integer = -1&#xA;    For Each k As String In keyOrder&#xA;        If map1.ContainsKey(k) AndAlso map2.ContainsKey(k) Then&#xA;            Dim v1 As String = norm(r1(map1(k)))&#xA;            If v1 &lt;&gt; &quot;&quot; Then&#xA;                For j As Integer = 0 To in_dt2.Rows.Count - 1&#xA;                    If Not usedRows.Contains(j) AndAlso norm(in_dt2.Rows(j)(map2(k))) = v1 Then&#xA;                        matchIdx = j&#xA;                        Exit For&#xA;                    End If&#xA;                Next&#xA;            End If&#xA;        End If&#xA;        If matchIdx &gt;= 0 Then Exit For&#xA;    Next&#xA;&#xA;    If matchIdx &lt; 0 Then&#xA;        sb.Append(label &amp; &quot;: no matching row in Table2; &quot;)&#xA;        Continue For&#xA;    End If&#xA;&#xA;    usedRows.Add(matchIdx)&#xA;    Dim r2 As System.Data.DataRow = in_dt2.Rows(matchIdx)&#xA;&#xA;    ' Compare every column of table 1 (except excluded) with its counterpart&#xA;    For Each c As System.Data.DataColumn In in_dt1.Columns&#xA;        Dim k As String = canon(c.ColumnName)&#xA;        If excludeCols.Contains(k) Then Continue For&#xA;&#xA;        If Not map2.ContainsKey(k) Then&#xA;            If reportedMissingCols.Add(k) Then sb.Append(&quot;Column '&quot; &amp; c.ColumnName &amp; &quot;' missing in Table2; &quot;)&#xA;        ElseIf norm(r1(c)) &lt;&gt; norm(r2(map2(k))) Then&#xA;            sb.Append(label &amp; &quot;: &quot; &amp; c.ColumnName &amp; &quot; mismatch (&quot; &amp; r1(c).ToString() &amp; &quot; vs &quot; &amp; r2(map2(k)).ToString() &amp; &quot;); &quot;)&#xA;        End If&#xA;    Next&#xA;Next&#xA;&#xA;' Rows in table 2 that were never matched&#xA;For j As Integer = 0 To in_dt2.Rows.Count - 1&#xA;    If Not usedRows.Contains(j) Then&#xA;        Dim lbl As String = &quot;Row &quot; &amp; (j + 1)&#xA;        If map2.ContainsKey(&quot;NAME&quot;) Then lbl = in_dt2.Rows(j)(map2(&quot;NAME&quot;)).ToString().Trim()&#xA;        sb.Append(lbl &amp; &quot;: no matching row in Table1; &quot;)&#xA;    End If&#xA;Next&#xA;&#xA;out_AllMatch = (sb.Length = 0)&#xA;out_MismatchStatus = If(out_AllMatch, &quot;No Mismatch&quot;, sb.ToString().TrimEnd(&quot; &quot;c, &quot;;&quot;c))" DisplayName="Invoke Code-Validate All The Filed Of SF Owner And DLD Owner" sap:VirtualizedContainerService.HintSize="616,57" sap2010:WorkflowViewState.IdRef="InvokeCode_2">
+                                  <ui:InvokeCode.Arguments>
+                                    <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt1">[dt_OwnerDetails]</InArgument>
+                                    <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt2">[dt_DLD_OwnerDetails]</InArgument>
+                                    <OutArgument x:TypeArguments="x:Boolean" x:Key="out_AllMatch">[is_allValuesMatch]</OutArgument>
+                                    <OutArgument x:TypeArguments="x:String" x:Key="out_MismatchStatus">[mismatchStatus]</OutArgument>
+                                  </ui:InvokeCode.Arguments>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </ui:InvokeCode>
+                                <ui:InvokeCode ContinueOnError="{x:Null}" Code="' ---- Settings (edit only these to change behaviour) ----&#xA;Dim excludeCols As New System.Collections.Generic.HashSet(Of String) From {&quot;SHARES ALLOCATED&quot;}&#xA;Dim aliases As New System.Collections.Generic.Dictionary(Of String, String) From {&#xA;    {&quot;ACCOUNT NAME&quot;, &quot;NAME&quot;}, {&quot;OWNER NAME&quot;, &quot;NAME&quot;}&#xA;}&#xA;Dim keyOrder() As String = {&quot;PASSPORT NUMBER&quot;, &quot;NAME&quot;}   ' used to pair rows, tried in this order&#xA;Dim fuzzyCols As New System.Collections.Generic.HashSet(Of String) From {&quot;NAME&quot;}   ' columns compared with fuzzy match&#xA;Dim fuzzyThreshold As Integer = 90                        ' 0-100, minimum score to treat names as the same&#xA;&#xA;' ---- Helpers ----&#xA;Dim canon As Func(Of String, String) = Function(h As String) _&#xA;    If(aliases.ContainsKey(h.Trim().ToUpperInvariant()), aliases(h.Trim().ToUpperInvariant()), h.Trim().ToUpperInvariant())&#xA;&#xA;Dim dateRx As New System.Text.RegularExpressions.Regex(&quot;^(\d{1,2})/(\d{1,2})/(\d{2}|\d{4})(\s+\d{1,2}:\d{2}(:\d{2})?)?$&quot;)&#xA;&#xA;Dim norm As Func(Of Object, String) = Function(o As Object)&#xA;                                          If o Is Nothing OrElse IsDBNull(o) Then Return &quot;&quot;&#xA;                                          Dim s As String = System.Text.RegularExpressions.Regex.Replace(o.ToString().Trim(), &quot;\s+&quot;, &quot; &quot;)&#xA;                                          Dim m As System.Text.RegularExpressions.Match = dateRx.Match(s)&#xA;                                          If m.Success Then&#xA;                                              Dim yr As String = m.Groups(3).Value&#xA;                                              Return m.Groups(1).Value.PadLeft(2, &quot;0&quot;c) &amp; &quot;/&quot; &amp; m.Groups(2).Value.PadLeft(2, &quot;0&quot;c) &amp; &quot;/&quot; &amp; yr.Substring(yr.Length - 2)&#xA;                                          End If&#xA;                                          Return s.ToUpperInvariant()&#xA;                                      End Function&#xA;&#xA;' Fuzzy score 0-100 (word order and repeated words are ignored)&#xA;Dim score As Func(Of String, String, Integer) = Function(a As String, b As String) As Integer&#xA;                                                    If a = &quot;&quot; OrElse b = &quot;&quot; Then Return 0&#xA;                                                    If a = b Then Return 100&#xA;                                                    Return FuzzySharp.Fuzz.TokenSetRatio(a, b)&#xA;                                                End Function&#xA;&#xA;' ---- Map: canonical column -&gt; actual column name in each table ----&#xA;Dim map1 As New System.Collections.Generic.Dictionary(Of String, String)&#xA;Dim map2 As New System.Collections.Generic.Dictionary(Of String, String)&#xA;For Each c As System.Data.DataColumn In in_dt1.Columns&#xA;    If Not map1.ContainsKey(canon(c.ColumnName)) Then map1.Add(canon(c.ColumnName), c.ColumnName)&#xA;Next&#xA;For Each c As System.Data.DataColumn In in_dt2.Columns&#xA;    If Not map2.ContainsKey(canon(c.ColumnName)) Then map2.Add(canon(c.ColumnName), c.ColumnName)&#xA;Next&#xA;&#xA;Dim sb As New System.Text.StringBuilder()&#xA;Dim reportedMissingCols As New System.Collections.Generic.HashSet(Of String)&#xA;Dim usedRows As New System.Collections.Generic.HashSet(Of Integer)&#xA;&#xA;If in_dt1.Rows.Count &lt;&gt; in_dt2.Rows.Count Then&#xA;    sb.Append(&quot;Row count mismatch (&quot; &amp; in_dt1.Rows.Count &amp; &quot; vs &quot; &amp; in_dt2.Rows.Count &amp; &quot;); &quot;)&#xA;End If&#xA;&#xA;For i As Integer = 0 To in_dt1.Rows.Count - 1&#xA;    Dim r1 As System.Data.DataRow = in_dt1.Rows(i)&#xA;&#xA;    ' Label for messages (name if available, else row number)&#xA;    Dim label As String = &quot;Row &quot; &amp; (i + 1)&#xA;    If map1.ContainsKey(&quot;NAME&quot;) Then label = r1(map1(&quot;NAME&quot;)).ToString().Trim()&#xA;&#xA;    ' Find matching row in table 2&#xA;    Dim matchIdx As Integer = -1&#xA;    For Each k As String In keyOrder&#xA;        If map1.ContainsKey(k) AndAlso map2.ContainsKey(k) Then&#xA;            Dim v1 As String = norm(r1(map1(k)))&#xA;            If v1 &lt;&gt; &quot;&quot; Then&#xA;                If fuzzyCols.Contains(k) Then&#xA;                    ' best fuzzy candidate among unused rows&#xA;                    Dim bestScore As Integer = -1&#xA;                    For j As Integer = 0 To in_dt2.Rows.Count - 1&#xA;                        If Not usedRows.Contains(j) Then&#xA;                            Dim sc As Integer = score(v1, norm(in_dt2.Rows(j)(map2(k))))&#xA;                            If sc &gt;= fuzzyThreshold AndAlso sc &gt; bestScore Then&#xA;                                bestScore = sc&#xA;                                matchIdx = j&#xA;                            End If&#xA;                        End If&#xA;                    Next&#xA;                Else&#xA;                    For j As Integer = 0 To in_dt2.Rows.Count - 1&#xA;                        If Not usedRows.Contains(j) AndAlso norm(in_dt2.Rows(j)(map2(k))) = v1 Then&#xA;                            matchIdx = j&#xA;                            Exit For&#xA;                        End If&#xA;                    Next&#xA;                End If&#xA;            End If&#xA;        End If&#xA;        If matchIdx &gt;= 0 Then Exit For&#xA;    Next&#xA;&#xA;    If matchIdx &lt; 0 Then&#xA;        sb.Append(label &amp; &quot;: no matching row in Table2; &quot;)&#xA;        Continue For&#xA;    End If&#xA;&#xA;    usedRows.Add(matchIdx)&#xA;    Dim r2 As System.Data.DataRow = in_dt2.Rows(matchIdx)&#xA;&#xA;    ' Compare every column of table 1 (except excluded) with its counterpart&#xA;    For Each c As System.Data.DataColumn In in_dt1.Columns&#xA;        Dim k As String = canon(c.ColumnName)&#xA;        If excludeCols.Contains(k) Then Continue For&#xA;&#xA;        If Not map2.ContainsKey(k) Then&#xA;            If reportedMissingCols.Add(k) Then sb.Append(&quot;Column '&quot; &amp; c.ColumnName &amp; &quot;' missing in Table2; &quot;)&#xA;        Else&#xA;            Dim n1 As String = norm(r1(c))&#xA;            Dim n2 As String = norm(r2(map2(k)))&#xA;            If fuzzyCols.Contains(k) Then&#xA;                Dim sc As Integer = score(n1, n2)&#xA;                If sc &lt; fuzzyThreshold Then&#xA;                    sb.Append(label &amp; &quot;: &quot; &amp; c.ColumnName &amp; &quot; mismatch (&quot; &amp; r1(c).ToString() &amp; &quot; vs &quot; &amp; r2(map2(k)).ToString() &amp; &quot;, score &quot; &amp; sc &amp; &quot;); &quot;)&#xA;                End If&#xA;            ElseIf n1 &lt;&gt; n2 Then&#xA;                sb.Append(label &amp; &quot;: &quot; &amp; c.ColumnName &amp; &quot; mismatch (&quot; &amp; r1(c).ToString() &amp; &quot; vs &quot; &amp; r2(map2(k)).ToString() &amp; &quot;); &quot;)&#xA;            End If&#xA;        End If&#xA;    Next&#xA;Next&#xA;&#xA;' Rows in table 2 that were never matched&#xA;For j As Integer = 0 To in_dt2.Rows.Count - 1&#xA;    If Not usedRows.Contains(j) Then&#xA;        Dim lbl As String = &quot;Row &quot; &amp; (j + 1)&#xA;        If map2.ContainsKey(&quot;NAME&quot;) Then lbl = in_dt2.Rows(j)(map2(&quot;NAME&quot;)).ToString().Trim()&#xA;        sb.Append(lbl &amp; &quot;: no matching row in Table1; &quot;)&#xA;    End If&#xA;Next&#xA;&#xA;out_AllMatch = (sb.Length = 0)&#xA;out_MismatchStatus = If(out_AllMatch, &quot;No Mismatch&quot;, sb.ToString().TrimEnd(&quot; &quot;c, &quot;;&quot;c))" DisplayName="Invoke Code-Validate All The Filed Of SF Owner And DLD Owner" sap:VirtualizedContainerService.HintSize="616,48" sap2010:WorkflowViewState.IdRef="InvokeCode_4">
+                                  <ui:InvokeCode.Arguments>
+                                    <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt1">[dt_OwnerDetails]</InArgument>
+                                    <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt2">[dt_DLD_OwnerDetails]</InArgument>
+                                    <OutArgument x:TypeArguments="x:Boolean" x:Key="out_AllMatch">[is_allValuesMatch]</OutArgument>
+                                    <OutArgument x:TypeArguments="x:String" x:Key="out_MismatchStatus">[mismatchStatus]</OutArgument>
+                                  </ui:InvokeCode.Arguments>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </ui:InvokeCode>
+                              </Sequence>
+                            </ui:CommentOut.Body>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:CommentOut>
+                          <ui:InvokeCode ContinueOnError="{x:Null}" Code="' ---- Settings (edit only these to change behaviour) ----&#xA;Dim excludeCols As New System.Collections.Generic.HashSet(Of String) From {&quot;SHARES ALLOCATED&quot;}&#xA;Dim aliases As New System.Collections.Generic.Dictionary(Of String, String) From {&#xA;    {&quot;ACCOUNT NAME&quot;, &quot;NAME&quot;}, {&quot;OWNER NAME&quot;, &quot;NAME&quot;}&#xA;}&#xA;Dim keyOrder() As String = {&quot;PASSPORT NUMBER&quot;, &quot;NAME&quot;}   ' used to pair rows, tried in this order&#xA;Dim fuzzyCols As New System.Collections.Generic.HashSet(Of String) From {&quot;NAME&quot;}   ' columns compared with fuzzy match&#xA;Dim fuzzyThreshold As Integer = 90                        ' 0-100, minimum score to treat names as the same&#xA;&#xA;' Columns compared with partial match (one value contained in the other)&#xA;Dim partialCols As New System.Collections.Generic.HashSet(Of String) From {&quot;NATIONALITY&quot;}&#xA;Dim partialThreshold As Integer = 90&#xA;&#xA;' Known official-name vs common-name differences (UPPERCASE). Add more as you find them.&#xA;Dim natAlias As New System.Collections.Generic.Dictionary(Of String, String) From {&#xA;    {&quot;SYRIAN ARAB REPUBLIC&quot;, &quot;SYRIA&quot;}, {&quot;SYRIAN&quot;, &quot;SYRIA&quot;},&#xA;    {&quot;RUSSIAN FEDERATION&quot;, &quot;RUSSIA&quot;}, {&quot;RUSSIAN&quot;, &quot;RUSSIA&quot;},&#xA;    {&quot;UNITED STATES OF AMERICA&quot;, &quot;USA&quot;}, {&quot;UNITED STATES&quot;, &quot;USA&quot;}, {&quot;AMERICAN&quot;, &quot;USA&quot;},&#xA;    {&quot;UNITED KINGDOM&quot;, &quot;UK&quot;}, {&quot;BRITISH&quot;, &quot;UK&quot;}, {&quot;GREAT BRITAIN&quot;, &quot;UK&quot;},&#xA;    {&quot;ISLAMIC REPUBLIC OF IRAN&quot;, &quot;IRAN&quot;}, {&quot;IRANIAN&quot;, &quot;IRAN&quot;},&#xA;    {&quot;REPUBLIC OF KOREA&quot;, &quot;SOUTH KOREA&quot;}, {&quot;KOREA, REPUBLIC OF&quot;, &quot;SOUTH KOREA&quot;},&#xA;    {&quot;UNITED ARAB EMIRATES&quot;, &quot;UAE&quot;}, {&quot;EMIRATI&quot;, &quot;UAE&quot;}&#xA;}&#xA;&#xA;' ---- Helpers ----&#xA;Dim canon As Func(Of String, String) = Function(h As String) _&#xA;    If(aliases.ContainsKey(h.Trim().ToUpperInvariant()), aliases(h.Trim().ToUpperInvariant()), h.Trim().ToUpperInvariant())&#xA;&#xA;Dim dateRx As New System.Text.RegularExpressions.Regex(&quot;^(\d{1,2})/(\d{1,2})/(\d{2}|\d{4})(\s+\d{1,2}:\d{2}(:\d{2})?)?$&quot;)&#xA;&#xA;Dim norm As Func(Of Object, String) = Function(o As Object)&#xA;                                          If o Is Nothing OrElse IsDBNull(o) Then Return &quot;&quot;&#xA;                                          Dim s As String = System.Text.RegularExpressions.Regex.Replace(o.ToString().Trim(), &quot;\s+&quot;, &quot; &quot;)&#xA;                                          Dim m As System.Text.RegularExpressions.Match = dateRx.Match(s)&#xA;                                          If m.Success Then&#xA;                                              Dim yr As String = m.Groups(3).Value&#xA;                                              Return m.Groups(1).Value.PadLeft(2, &quot;0&quot;c) &amp; &quot;/&quot; &amp; m.Groups(2).Value.PadLeft(2, &quot;0&quot;c) &amp; &quot;/&quot; &amp; yr.Substring(yr.Length - 2)&#xA;                                          End If&#xA;                                          Return s.ToUpperInvariant()&#xA;                                      End Function&#xA;&#xA;' Fuzzy score 0-100 (word order and repeated words are ignored)&#xA;Dim score As Func(Of String, String, Integer) = Function(a As String, b As String) As Integer&#xA;                                                    If a = &quot;&quot; OrElse b = &quot;&quot; Then Return 0&#xA;                                                    If a = b Then Return 100&#xA;                                                    Return FuzzySharp.Fuzz.TokenSetRatio(a, b)&#xA;                                                End Function&#xA;&#xA;' Partial score 0-100 (alias lookup first, then &quot;one contains the other&quot;)&#xA;Dim partialScore As Func(Of String, String, Integer) = Function(a As String, b As String) As Integer&#xA;                                                           If a = &quot;&quot; OrElse b = &quot;&quot; Then Return 0&#xA;                                                           If natAlias.ContainsKey(a) Then a = natAlias(a)&#xA;                                                           If natAlias.ContainsKey(b) Then b = natAlias(b)&#xA;                                                           If a = b Then Return 100&#xA;                                                           If Math.Min(a.Length, b.Length) &lt; 4 Then Return 0&#xA;                                                           Return FuzzySharp.Fuzz.PartialRatio(a, b)&#xA;                                                       End Function&#xA;&#xA;' ---- Map: canonical column -&gt; actual column name in each table ----&#xA;Dim map1 As New System.Collections.Generic.Dictionary(Of String, String)&#xA;Dim map2 As New System.Collections.Generic.Dictionary(Of String, String)&#xA;For Each c As System.Data.DataColumn In in_dt1.Columns&#xA;    If Not map1.ContainsKey(canon(c.ColumnName)) Then map1.Add(canon(c.ColumnName), c.ColumnName)&#xA;Next&#xA;For Each c As System.Data.DataColumn In in_dt2.Columns&#xA;    If Not map2.ContainsKey(canon(c.ColumnName)) Then map2.Add(canon(c.ColumnName), c.ColumnName)&#xA;Next&#xA;&#xA;Dim sb As New System.Text.StringBuilder()&#xA;Dim reportedMissingCols As New System.Collections.Generic.HashSet(Of String)&#xA;Dim usedRows As New System.Collections.Generic.HashSet(Of Integer)&#xA;&#xA;If in_dt1.Rows.Count &lt;&gt; in_dt2.Rows.Count Then&#xA;    sb.Append(&quot;Row count mismatch (&quot; &amp; in_dt1.Rows.Count &amp; &quot; vs &quot; &amp; in_dt2.Rows.Count &amp; &quot;); &quot;)&#xA;End If&#xA;&#xA;For i As Integer = 0 To in_dt1.Rows.Count - 1&#xA;    Dim r1 As System.Data.DataRow = in_dt1.Rows(i)&#xA;&#xA;    ' Label for messages (name if available, else row number)&#xA;    Dim label As String = &quot;Row &quot; &amp; (i + 1)&#xA;    If map1.ContainsKey(&quot;NAME&quot;) Then label = r1(map1(&quot;NAME&quot;)).ToString().Trim()&#xA;&#xA;    ' Find matching row in table 2&#xA;    Dim matchIdx As Integer = -1&#xA;    For Each k As String In keyOrder&#xA;        If map1.ContainsKey(k) AndAlso map2.ContainsKey(k) Then&#xA;            Dim v1 As String = norm(r1(map1(k)))&#xA;            If v1 &lt;&gt; &quot;&quot; Then&#xA;                If fuzzyCols.Contains(k) Then&#xA;                    ' best fuzzy candidate among unused rows&#xA;                    Dim bestScore As Integer = -1&#xA;                    For j As Integer = 0 To in_dt2.Rows.Count - 1&#xA;                        If Not usedRows.Contains(j) Then&#xA;                            Dim sc As Integer = score(v1, norm(in_dt2.Rows(j)(map2(k))))&#xA;                            If sc &gt;= fuzzyThreshold AndAlso sc &gt; bestScore Then&#xA;                                bestScore = sc&#xA;                                matchIdx = j&#xA;                            End If&#xA;                        End If&#xA;                    Next&#xA;                Else&#xA;                    For j As Integer = 0 To in_dt2.Rows.Count - 1&#xA;                        If Not usedRows.Contains(j) AndAlso norm(in_dt2.Rows(j)(map2(k))) = v1 Then&#xA;                            matchIdx = j&#xA;                            Exit For&#xA;                        End If&#xA;                    Next&#xA;                End If&#xA;            End If&#xA;        End If&#xA;        If matchIdx &gt;= 0 Then Exit For&#xA;    Next&#xA;&#xA;    If matchIdx &lt; 0 Then&#xA;        sb.Append(label &amp; &quot;: no matching row in Table2; &quot;)&#xA;        Continue For&#xA;    End If&#xA;&#xA;    usedRows.Add(matchIdx)&#xA;    Dim r2 As System.Data.DataRow = in_dt2.Rows(matchIdx)&#xA;&#xA;    ' Compare every column of table 1 (except excluded) with its counterpart&#xA;    For Each c As System.Data.DataColumn In in_dt1.Columns&#xA;        Dim k As String = canon(c.ColumnName)&#xA;        If excludeCols.Contains(k) Then Continue For&#xA;&#xA;        If Not map2.ContainsKey(k) Then&#xA;            If reportedMissingCols.Add(k) Then sb.Append(&quot;Column '&quot; &amp; c.ColumnName &amp; &quot;' missing in Table2; &quot;)&#xA;        Else&#xA;            Dim n1 As String = norm(r1(c))&#xA;            Dim n2 As String = norm(r2(map2(k)))&#xA;            If fuzzyCols.Contains(k) Then&#xA;                Dim sc As Integer = score(n1, n2)&#xA;                If sc &lt; fuzzyThreshold Then&#xA;                    sb.Append(label &amp; &quot;: &quot; &amp; c.ColumnName &amp; &quot; mismatch (&quot; &amp; r1(c).ToString() &amp; &quot; vs &quot; &amp; r2(map2(k)).ToString() &amp; &quot;, score &quot; &amp; sc &amp; &quot;); &quot;)&#xA;                End If&#xA;            ElseIf partialCols.Contains(k) Then&#xA;                Dim sc As Integer = partialScore(n1, n2)&#xA;                If sc &lt; partialThreshold Then&#xA;                    sb.Append(label &amp; &quot;: &quot; &amp; c.ColumnName &amp; &quot; mismatch (&quot; &amp; r1(c).ToString() &amp; &quot; vs &quot; &amp; r2(map2(k)).ToString() &amp; &quot;, score &quot; &amp; sc &amp; &quot;); &quot;)&#xA;                End If&#xA;            ElseIf n1 &lt;&gt; n2 Then&#xA;                sb.Append(label &amp; &quot;: &quot; &amp; c.ColumnName &amp; &quot; mismatch (&quot; &amp; r1(c).ToString() &amp; &quot; vs &quot; &amp; r2(map2(k)).ToString() &amp; &quot;); &quot;)&#xA;            End If&#xA;        End If&#xA;    Next&#xA;Next&#xA;&#xA;' Rows in table 2 that were never matched&#xA;For j As Integer = 0 To in_dt2.Rows.Count - 1&#xA;    If Not usedRows.Contains(j) Then&#xA;        Dim lbl As String = &quot;Row &quot; &amp; (j + 1)&#xA;        If map2.ContainsKey(&quot;NAME&quot;) Then lbl = in_dt2.Rows(j)(map2(&quot;NAME&quot;)).ToString().Trim()&#xA;        sb.Append(lbl &amp; &quot;: no matching row in Table1; &quot;)&#xA;    End If&#xA;Next&#xA;&#xA;out_AllMatch = (sb.Length = 0)&#xA;out_MismatchStatus = If(out_AllMatch, &quot;No Mismatch&quot;, sb.ToString().TrimEnd(&quot; &quot;c, &quot;;&quot;c))" DisplayName="Invoke Code-Validate All The Filed Of SF Owner And DLD Owner" sap:VirtualizedContainerService.HintSize="416,403" sap2010:WorkflowViewState.IdRef="InvokeCode_6">
+                            <ui:InvokeCode.Arguments>
+                              <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt1">[dt_OwnerDetails]</InArgument>
+                              <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt2">[dt_DLD_OwnerDetails]</InArgument>
+                              <OutArgument x:TypeArguments="x:Boolean" x:Key="out_AllMatch">[is_allValuesMatch]</OutArgument>
+                              <OutArgument x:TypeArguments="x:String" x:Key="out_MismatchStatus">[mismatchStatus]</OutArgument>
+                            </ui:InvokeCode.Arguments>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:InvokeCode>
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;&quot;]" />
+                        </Sequence>
+                      </If.Then>
+                      <If.Else>
+                        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,732" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&#xA;&#x9;in_TransactionItem(&quot;Account Name&quot;).ToString,&#xA;&#x9;in_TransactionItem(&quot;Passport No.&quot;).ToString,&#xA;&#x9;DateTime.ParseExact( in_TransactionItem(&quot;Passport Expiry Date&quot;).ToString, &quot;M/d/yyyy&quot;, System.Globalization.CultureInfo.InvariantCulture).ToString(&quot;dd/MM/yyyy&quot;, System.Globalization.CultureInfo.InvariantCulture),&#xA;&#x9;DateTime.ParseExact(in_TransactionItem(&quot;Birth Date&quot;).ToString, &quot;M/d/yyyy&quot;, System.Globalization.CultureInfo.InvariantCulture).ToString(&quot;dd/MM/yyyy&quot;, System.Globalization.CultureInfo.InvariantCulture),&#xA;&#x9;in_TransactionItem(&quot;Nationality&quot;).ToString&#xA;}]" DataTable="[dt_OwnerDetails]" DisplayName="Add Data Row-Primer Owner To Joint Owner" sap:VirtualizedContainerService.HintSize="416,221" sap2010:WorkflowViewState.IdRef="AddDataRow_4">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:AddDataRow>
+                          <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="416,57" sap2010:WorkflowViewState.IdRef="CommentOut_3">
+                            <ui:CommentOut.Body>
+                              <Sequence DisplayName="Ignored activities" sap:VirtualizedContainerService.HintSize="650,165" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:InvokeCode ContinueOnError="{x:Null}" Code="' ---- Settings (edit only these to change behaviour) ----&#xA;Dim excludeCols As New System.Collections.Generic.HashSet(Of String) From {&quot;SHARES ALLOCATED&quot;}&#xA;Dim aliases As New System.Collections.Generic.Dictionary(Of String, String) From {&#xA;    {&quot;ACCOUNT NAME&quot;, &quot;NAME&quot;}, {&quot;OWNER NAME&quot;, &quot;NAME&quot;}&#xA;}&#xA;Dim keyOrder() As String = {&quot;PASSPORT NUMBER&quot;, &quot;NAME&quot;}   ' used to pair rows, tried in this order&#xA;&#xA;' ---- Helpers ----&#xA;Dim canon As Func(Of String, String) = Function(h As String) _&#xA;    If(aliases.ContainsKey(h.Trim().ToUpperInvariant()), aliases(h.Trim().ToUpperInvariant()), h.Trim().ToUpperInvariant())&#xA;&#xA;Dim dateRx As New System.Text.RegularExpressions.Regex(&quot;^(\d{1,2})/(\d{1,2})/(\d{2}|\d{4})(\s+\d{1,2}:\d{2}(:\d{2})?)?$&quot;)&#xA;&#xA;Dim norm As Func(Of Object, String) = Function(o As Object)&#xA;                                          If o Is Nothing OrElse IsDBNull(o) Then Return &quot;&quot;&#xA;                                          Dim s As String = System.Text.RegularExpressions.Regex.Replace(o.ToString().Trim(), &quot;\s+&quot;, &quot; &quot;)&#xA;                                          Dim m As System.Text.RegularExpressions.Match = dateRx.Match(s)&#xA;                                          If m.Success Then&#xA;                                              Dim yr As String = m.Groups(3).Value&#xA;                                              Return m.Groups(1).Value.PadLeft(2, &quot;0&quot;c) &amp; &quot;/&quot; &amp; m.Groups(2).Value.PadLeft(2, &quot;0&quot;c) &amp; &quot;/&quot; &amp; yr.Substring(yr.Length - 2)&#xA;                                          End If&#xA;                                          Return s.ToUpperInvariant()&#xA;                                      End Function&#xA;&#xA;' ---- Map: canonical column -&gt; actual column name in each table ----&#xA;Dim map1 As New System.Collections.Generic.Dictionary(Of String, String)&#xA;Dim map2 As New System.Collections.Generic.Dictionary(Of String, String)&#xA;For Each c As System.Data.DataColumn In in_dt1.Columns&#xA;    If Not map1.ContainsKey(canon(c.ColumnName)) Then map1.Add(canon(c.ColumnName), c.ColumnName)&#xA;Next&#xA;For Each c As System.Data.DataColumn In in_dt2.Columns&#xA;    If Not map2.ContainsKey(canon(c.ColumnName)) Then map2.Add(canon(c.ColumnName), c.ColumnName)&#xA;Next&#xA;&#xA;Dim sb As New System.Text.StringBuilder()&#xA;Dim reportedMissingCols As New System.Collections.Generic.HashSet(Of String)&#xA;Dim usedRows As New System.Collections.Generic.HashSet(Of Integer)&#xA;&#xA;If in_dt1.Rows.Count &lt;&gt; in_dt2.Rows.Count Then&#xA;    sb.Append(&quot;Row count mismatch (&quot; &amp; in_dt1.Rows.Count &amp; &quot; vs &quot; &amp; in_dt2.Rows.Count &amp; &quot;); &quot;)&#xA;End If&#xA;&#xA;For i As Integer = 0 To in_dt1.Rows.Count - 1&#xA;    Dim r1 As System.Data.DataRow = in_dt1.Rows(i)&#xA;&#xA;    ' Label for messages (name if available, else row number)&#xA;    Dim label As String = &quot;Row &quot; &amp; (i + 1)&#xA;    If map1.ContainsKey(&quot;NAME&quot;) Then label = r1(map1(&quot;NAME&quot;)).ToString().Trim()&#xA;&#xA;    ' Find matching row in table 2&#xA;    Dim matchIdx As Integer = -1&#xA;    For Each k As String In keyOrder&#xA;        If map1.ContainsKey(k) AndAlso map2.ContainsKey(k) Then&#xA;            Dim v1 As String = norm(r1(map1(k)))&#xA;            If v1 &lt;&gt; &quot;&quot; Then&#xA;                For j As Integer = 0 To in_dt2.Rows.Count - 1&#xA;                    If Not usedRows.Contains(j) AndAlso norm(in_dt2.Rows(j)(map2(k))) = v1 Then&#xA;                        matchIdx = j&#xA;                        Exit For&#xA;                    End If&#xA;                Next&#xA;            End If&#xA;        End If&#xA;        If matchIdx &gt;= 0 Then Exit For&#xA;    Next&#xA;&#xA;    If matchIdx &lt; 0 Then&#xA;        sb.Append(label &amp; &quot;: no matching row in Table2; &quot;)&#xA;        Continue For&#xA;    End If&#xA;&#xA;    usedRows.Add(matchIdx)&#xA;    Dim r2 As System.Data.DataRow = in_dt2.Rows(matchIdx)&#xA;&#xA;    ' Compare every column of table 1 (except excluded) with its counterpart&#xA;    For Each c As System.Data.DataColumn In in_dt1.Columns&#xA;        Dim k As String = canon(c.ColumnName)&#xA;        If excludeCols.Contains(k) Then Continue For&#xA;&#xA;        If Not map2.ContainsKey(k) Then&#xA;            If reportedMissingCols.Add(k) Then sb.Append(&quot;Column '&quot; &amp; c.ColumnName &amp; &quot;' missing in Table2; &quot;)&#xA;        ElseIf norm(r1(c)) &lt;&gt; norm(r2(map2(k))) Then&#xA;            sb.Append(label &amp; &quot;: &quot; &amp; c.ColumnName &amp; &quot; mismatch (&quot; &amp; r1(c).ToString() &amp; &quot; vs &quot; &amp; r2(map2(k)).ToString() &amp; &quot;); &quot;)&#xA;        End If&#xA;    Next&#xA;Next&#xA;&#xA;' Rows in table 2 that were never matched&#xA;For j As Integer = 0 To in_dt2.Rows.Count - 1&#xA;    If Not usedRows.Contains(j) Then&#xA;        Dim lbl As String = &quot;Row &quot; &amp; (j + 1)&#xA;        If map2.ContainsKey(&quot;NAME&quot;) Then lbl = in_dt2.Rows(j)(map2(&quot;NAME&quot;)).ToString().Trim()&#xA;        sb.Append(lbl &amp; &quot;: no matching row in Table1; &quot;)&#xA;    End If&#xA;Next&#xA;&#xA;out_AllMatch = (sb.Length = 0)&#xA;out_MismatchStatus = If(out_AllMatch, &quot;No Mismatch&quot;, sb.ToString().TrimEnd(&quot; &quot;c, &quot;;&quot;c))" DisplayName="Invoke Code-Validate All The Filed Of SF Owner And DLD Owner" sap:VirtualizedContainerService.HintSize="616,57" sap2010:WorkflowViewState.IdRef="InvokeCode_3">
+                                  <ui:InvokeCode.Arguments>
+                                    <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt1">[dt_OwnerDetails]</InArgument>
+                                    <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt2">[dt_DLD_OwnerDetails]</InArgument>
+                                    <OutArgument x:TypeArguments="x:Boolean" x:Key="out_AllMatch">[is_allValuesMatch]</OutArgument>
+                                    <OutArgument x:TypeArguments="x:String" x:Key="out_MismatchStatus">[mismatchStatus]</OutArgument>
+                                  </ui:InvokeCode.Arguments>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </ui:InvokeCode>
+                                <ui:InvokeCode ContinueOnError="{x:Null}" Code="' ---- Settings (edit only these to change behaviour) ----&#xA;Dim excludeCols As New System.Collections.Generic.HashSet(Of String) From {&quot;SHARES ALLOCATED&quot;}&#xA;Dim aliases As New System.Collections.Generic.Dictionary(Of String, String) From {&#xA;    {&quot;ACCOUNT NAME&quot;, &quot;NAME&quot;}, {&quot;OWNER NAME&quot;, &quot;NAME&quot;}&#xA;}&#xA;Dim keyOrder() As String = {&quot;PASSPORT NUMBER&quot;, &quot;NAME&quot;}   ' used to pair rows, tried in this order&#xA;Dim fuzzyCols As New System.Collections.Generic.HashSet(Of String) From {&quot;NAME&quot;}   ' columns compared with fuzzy match&#xA;Dim fuzzyThreshold As Integer = 90                        ' 0-100, minimum score to treat names as the same&#xA;&#xA;' ---- Helpers ----&#xA;Dim canon As Func(Of String, String) = Function(h As String) _&#xA;    If(aliases.ContainsKey(h.Trim().ToUpperInvariant()), aliases(h.Trim().ToUpperInvariant()), h.Trim().ToUpperInvariant())&#xA;&#xA;Dim dateRx As New System.Text.RegularExpressions.Regex(&quot;^(\d{1,2})/(\d{1,2})/(\d{2}|\d{4})(\s+\d{1,2}:\d{2}(:\d{2})?)?$&quot;)&#xA;&#xA;Dim norm As Func(Of Object, String) = Function(o As Object)&#xA;                                          If o Is Nothing OrElse IsDBNull(o) Then Return &quot;&quot;&#xA;                                          Dim s As String = System.Text.RegularExpressions.Regex.Replace(o.ToString().Trim(), &quot;\s+&quot;, &quot; &quot;)&#xA;                                          Dim m As System.Text.RegularExpressions.Match = dateRx.Match(s)&#xA;                                          If m.Success Then&#xA;                                              Dim yr As String = m.Groups(3).Value&#xA;                                              Return m.Groups(1).Value.PadLeft(2, &quot;0&quot;c) &amp; &quot;/&quot; &amp; m.Groups(2).Value.PadLeft(2, &quot;0&quot;c) &amp; &quot;/&quot; &amp; yr.Substring(yr.Length - 2)&#xA;                                          End If&#xA;                                          Return s.ToUpperInvariant()&#xA;                                      End Function&#xA;&#xA;' Fuzzy score 0-100 (word order and repeated words are ignored)&#xA;Dim score As Func(Of String, String, Integer) = Function(a As String, b As String) As Integer&#xA;                                                    If a = &quot;&quot; OrElse b = &quot;&quot; Then Return 0&#xA;                                                    If a = b Then Return 100&#xA;                                                    Return FuzzySharp.Fuzz.TokenSetRatio(a, b)&#xA;                                                End Function&#xA;&#xA;' ---- Map: canonical column -&gt; actual column name in each table ----&#xA;Dim map1 As New System.Collections.Generic.Dictionary(Of String, String)&#xA;Dim map2 As New System.Collections.Generic.Dictionary(Of String, String)&#xA;For Each c As System.Data.DataColumn In in_dt1.Columns&#xA;    If Not map1.ContainsKey(canon(c.ColumnName)) Then map1.Add(canon(c.ColumnName), c.ColumnName)&#xA;Next&#xA;For Each c As System.Data.DataColumn In in_dt2.Columns&#xA;    If Not map2.ContainsKey(canon(c.ColumnName)) Then map2.Add(canon(c.ColumnName), c.ColumnName)&#xA;Next&#xA;&#xA;Dim sb As New System.Text.StringBuilder()&#xA;Dim reportedMissingCols As New System.Collections.Generic.HashSet(Of String)&#xA;Dim usedRows As New System.Collections.Generic.HashSet(Of Integer)&#xA;&#xA;If in_dt1.Rows.Count &lt;&gt; in_dt2.Rows.Count Then&#xA;    sb.Append(&quot;Row count mismatch (&quot; &amp; in_dt1.Rows.Count &amp; &quot; vs &quot; &amp; in_dt2.Rows.Count &amp; &quot;); &quot;)&#xA;End If&#xA;&#xA;For i As Integer = 0 To in_dt1.Rows.Count - 1&#xA;    Dim r1 As System.Data.DataRow = in_dt1.Rows(i)&#xA;&#xA;    ' Label for messages (name if available, else row number)&#xA;    Dim label As String = &quot;Row &quot; &amp; (i + 1)&#xA;    If map1.ContainsKey(&quot;NAME&quot;) Then label = r1(map1(&quot;NAME&quot;)).ToString().Trim()&#xA;&#xA;    ' Find matching row in table 2&#xA;    Dim matchIdx As Integer = -1&#xA;    For Each k As String In keyOrder&#xA;        If map1.ContainsKey(k) AndAlso map2.ContainsKey(k) Then&#xA;            Dim v1 As String = norm(r1(map1(k)))&#xA;            If v1 &lt;&gt; &quot;&quot; Then&#xA;                If fuzzyCols.Contains(k) Then&#xA;                    ' best fuzzy candidate among unused rows&#xA;                    Dim bestScore As Integer = -1&#xA;                    For j As Integer = 0 To in_dt2.Rows.Count - 1&#xA;                        If Not usedRows.Contains(j) Then&#xA;                            Dim sc As Integer = score(v1, norm(in_dt2.Rows(j)(map2(k))))&#xA;                            If sc &gt;= fuzzyThreshold AndAlso sc &gt; bestScore Then&#xA;                                bestScore = sc&#xA;                                matchIdx = j&#xA;                            End If&#xA;                        End If&#xA;                    Next&#xA;                Else&#xA;                    For j As Integer = 0 To in_dt2.Rows.Count - 1&#xA;                        If Not usedRows.Contains(j) AndAlso norm(in_dt2.Rows(j)(map2(k))) = v1 Then&#xA;                            matchIdx = j&#xA;                            Exit For&#xA;                        End If&#xA;                    Next&#xA;                End If&#xA;            End If&#xA;        End If&#xA;        If matchIdx &gt;= 0 Then Exit For&#xA;    Next&#xA;&#xA;    If matchIdx &lt; 0 Then&#xA;        sb.Append(label &amp; &quot;: no matching row in Table2; &quot;)&#xA;        Continue For&#xA;    End If&#xA;&#xA;    usedRows.Add(matchIdx)&#xA;    Dim r2 As System.Data.DataRow = in_dt2.Rows(matchIdx)&#xA;&#xA;    ' Compare every column of table 1 (except excluded) with its counterpart&#xA;    For Each c As System.Data.DataColumn In in_dt1.Columns&#xA;        Dim k As String = canon(c.ColumnName)&#xA;        If excludeCols.Contains(k) Then Continue For&#xA;&#xA;        If Not map2.ContainsKey(k) Then&#xA;            If reportedMissingCols.Add(k) Then sb.Append(&quot;Column '&quot; &amp; c.ColumnName &amp; &quot;' missing in Table2; &quot;)&#xA;        Else&#xA;            Dim n1 As String = norm(r1(c))&#xA;            Dim n2 As String = norm(r2(map2(k)))&#xA;            If fuzzyCols.Contains(k) Then&#xA;                Dim sc As Integer = score(n1, n2)&#xA;                If sc &lt; fuzzyThreshold Then&#xA;                    sb.Append(label &amp; &quot;: &quot; &amp; c.ColumnName &amp; &quot; mismatch (&quot; &amp; r1(c).ToString() &amp; &quot; vs &quot; &amp; r2(map2(k)).ToString() &amp; &quot;, score &quot; &amp; sc &amp; &quot;); &quot;)&#xA;                End If&#xA;            ElseIf n1 &lt;&gt; n2 Then&#xA;                sb.Append(label &amp; &quot;: &quot; &amp; c.ColumnName &amp; &quot; mismatch (&quot; &amp; r1(c).ToString() &amp; &quot; vs &quot; &amp; r2(map2(k)).ToString() &amp; &quot;); &quot;)&#xA;            End If&#xA;        End If&#xA;    Next&#xA;Next&#xA;&#xA;' Rows in table 2 that were never matched&#xA;For j As Integer = 0 To in_dt2.Rows.Count - 1&#xA;    If Not usedRows.Contains(j) Then&#xA;        Dim lbl As String = &quot;Row &quot; &amp; (j + 1)&#xA;        If map2.ContainsKey(&quot;NAME&quot;) Then lbl = in_dt2.Rows(j)(map2(&quot;NAME&quot;)).ToString().Trim()&#xA;        sb.Append(lbl &amp; &quot;: no matching row in Table1; &quot;)&#xA;    End If&#xA;Next&#xA;&#xA;out_AllMatch = (sb.Length = 0)&#xA;out_MismatchStatus = If(out_AllMatch, &quot;No Mismatch&quot;, sb.ToString().TrimEnd(&quot; &quot;c, &quot;;&quot;c))" DisplayName="Invoke Code-Validate All The Filed Of SF Owner And DLD Owner" sap:VirtualizedContainerService.HintSize="616,48" sap2010:WorkflowViewState.IdRef="InvokeCode_5">
+                                  <ui:InvokeCode.Arguments>
+                                    <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt1">[dt_OwnerDetails]</InArgument>
+                                    <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt2">[dt_DLD_OwnerDetails]</InArgument>
+                                    <OutArgument x:TypeArguments="x:Boolean" x:Key="out_AllMatch">[is_allValuesMatch]</OutArgument>
+                                    <OutArgument x:TypeArguments="x:String" x:Key="out_MismatchStatus">[mismatchStatus]</OutArgument>
+                                  </ui:InvokeCode.Arguments>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </ui:InvokeCode>
+                              </Sequence>
+                            </ui:CommentOut.Body>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:CommentOut>
+                          <ui:InvokeCode ContinueOnError="{x:Null}" Code="' ---- Settings (edit only these to change behaviour) ----&#xA;Dim excludeCols As New System.Collections.Generic.HashSet(Of String) From {&quot;SHARES ALLOCATED&quot;}&#xA;Dim aliases As New System.Collections.Generic.Dictionary(Of String, String) From {&#xA;    {&quot;ACCOUNT NAME&quot;, &quot;NAME&quot;}, {&quot;OWNER NAME&quot;, &quot;NAME&quot;}&#xA;}&#xA;Dim keyOrder() As String = {&quot;PASSPORT NUMBER&quot;, &quot;NAME&quot;}   ' used to pair rows, tried in this order&#xA;Dim fuzzyCols As New System.Collections.Generic.HashSet(Of String) From {&quot;NAME&quot;}   ' columns compared with fuzzy match&#xA;Dim fuzzyThreshold As Integer = 90                        ' 0-100, minimum score to treat names as the same&#xA;&#xA;' Columns compared with partial match (one value contained in the other)&#xA;Dim partialCols As New System.Collections.Generic.HashSet(Of String) From {&quot;NATIONALITY&quot;}&#xA;Dim partialThreshold As Integer = 90&#xA;&#xA;' Known official-name vs common-name differences (UPPERCASE). Add more as you find them.&#xA;Dim natAlias As New System.Collections.Generic.Dictionary(Of String, String) From {&#xA;    {&quot;SYRIAN ARAB REPUBLIC&quot;, &quot;SYRIA&quot;}, {&quot;SYRIAN&quot;, &quot;SYRIA&quot;},&#xA;    {&quot;RUSSIAN FEDERATION&quot;, &quot;RUSSIA&quot;}, {&quot;RUSSIAN&quot;, &quot;RUSSIA&quot;},&#xA;    {&quot;UNITED STATES OF AMERICA&quot;, &quot;USA&quot;}, {&quot;UNITED STATES&quot;, &quot;USA&quot;}, {&quot;AMERICAN&quot;, &quot;USA&quot;},&#xA;    {&quot;UNITED KINGDOM&quot;, &quot;UK&quot;}, {&quot;BRITISH&quot;, &quot;UK&quot;}, {&quot;GREAT BRITAIN&quot;, &quot;UK&quot;},&#xA;    {&quot;ISLAMIC REPUBLIC OF IRAN&quot;, &quot;IRAN&quot;}, {&quot;IRANIAN&quot;, &quot;IRAN&quot;},&#xA;    {&quot;REPUBLIC OF KOREA&quot;, &quot;SOUTH KOREA&quot;}, {&quot;KOREA, REPUBLIC OF&quot;, &quot;SOUTH KOREA&quot;},&#xA;    {&quot;UNITED ARAB EMIRATES&quot;, &quot;UAE&quot;}, {&quot;EMIRATI&quot;, &quot;UAE&quot;}&#xA;}&#xA;&#xA;' ---- Helpers ----&#xA;Dim canon As Func(Of String, String) = Function(h As String) _&#xA;    If(aliases.ContainsKey(h.Trim().ToUpperInvariant()), aliases(h.Trim().ToUpperInvariant()), h.Trim().ToUpperInvariant())&#xA;&#xA;Dim dateRx As New System.Text.RegularExpressions.Regex(&quot;^(\d{1,2})/(\d{1,2})/(\d{2}|\d{4})(\s+\d{1,2}:\d{2}(:\d{2})?)?$&quot;)&#xA;&#xA;Dim norm As Func(Of Object, String) = Function(o As Object)&#xA;                                          If o Is Nothing OrElse IsDBNull(o) Then Return &quot;&quot;&#xA;                                          Dim s As String = System.Text.RegularExpressions.Regex.Replace(o.ToString().Trim(), &quot;\s+&quot;, &quot; &quot;)&#xA;                                          Dim m As System.Text.RegularExpressions.Match = dateRx.Match(s)&#xA;                                          If m.Success Then&#xA;                                              Dim yr As String = m.Groups(3).Value&#xA;                                              Return m.Groups(1).Value.PadLeft(2, &quot;0&quot;c) &amp; &quot;/&quot; &amp; m.Groups(2).Value.PadLeft(2, &quot;0&quot;c) &amp; &quot;/&quot; &amp; yr.Substring(yr.Length - 2)&#xA;                                          End If&#xA;                                          Return s.ToUpperInvariant()&#xA;                                      End Function&#xA;&#xA;' Fuzzy score 0-100 (word order and repeated words are ignored)&#xA;Dim score As Func(Of String, String, Integer) = Function(a As String, b As String) As Integer&#xA;                                                    If a = &quot;&quot; OrElse b = &quot;&quot; Then Return 0&#xA;                                                    If a = b Then Return 100&#xA;                                                    Return FuzzySharp.Fuzz.TokenSetRatio(a, b)&#xA;                                                End Function&#xA;&#xA;' Partial score 0-100 (alias lookup first, then &quot;one contains the other&quot;)&#xA;Dim partialScore As Func(Of String, String, Integer) = Function(a As String, b As String) As Integer&#xA;                                                           If a = &quot;&quot; OrElse b = &quot;&quot; Then Return 0&#xA;                                                           If natAlias.ContainsKey(a) Then a = natAlias(a)&#xA;                                                           If natAlias.ContainsKey(b) Then b = natAlias(b)&#xA;                                                           If a = b Then Return 100&#xA;                                                           If Math.Min(a.Length, b.Length) &lt; 4 Then Return 0&#xA;                                                           Return FuzzySharp.Fuzz.PartialRatio(a, b)&#xA;                                                       End Function&#xA;&#xA;' ---- Map: canonical column -&gt; actual column name in each table ----&#xA;Dim map1 As New System.Collections.Generic.Dictionary(Of String, String)&#xA;Dim map2 As New System.Collections.Generic.Dictionary(Of String, String)&#xA;For Each c As System.Data.DataColumn In in_dt1.Columns&#xA;    If Not map1.ContainsKey(canon(c.ColumnName)) Then map1.Add(canon(c.ColumnName), c.ColumnName)&#xA;Next&#xA;For Each c As System.Data.DataColumn In in_dt2.Columns&#xA;    If Not map2.ContainsKey(canon(c.ColumnName)) Then map2.Add(canon(c.ColumnName), c.ColumnName)&#xA;Next&#xA;&#xA;Dim sb As New System.Text.StringBuilder()&#xA;Dim reportedMissingCols As New System.Collections.Generic.HashSet(Of String)&#xA;Dim usedRows As New System.Collections.Generic.HashSet(Of Integer)&#xA;&#xA;If in_dt1.Rows.Count &lt;&gt; in_dt2.Rows.Count Then&#xA;    sb.Append(&quot;Row count mismatch (&quot; &amp; in_dt1.Rows.Count &amp; &quot; vs &quot; &amp; in_dt2.Rows.Count &amp; &quot;); &quot;)&#xA;End If&#xA;&#xA;For i As Integer = 0 To in_dt1.Rows.Count - 1&#xA;    Dim r1 As System.Data.DataRow = in_dt1.Rows(i)&#xA;&#xA;    ' Label for messages (name if available, else row number)&#xA;    Dim label As String = &quot;Row &quot; &amp; (i + 1)&#xA;    If map1.ContainsKey(&quot;NAME&quot;) Then label = r1(map1(&quot;NAME&quot;)).ToString().Trim()&#xA;&#xA;    ' Find matching row in table 2&#xA;    Dim matchIdx As Integer = -1&#xA;    For Each k As String In keyOrder&#xA;        If map1.ContainsKey(k) AndAlso map2.ContainsKey(k) Then&#xA;            Dim v1 As String = norm(r1(map1(k)))&#xA;            If v1 &lt;&gt; &quot;&quot; Then&#xA;                If fuzzyCols.Contains(k) Then&#xA;                    ' best fuzzy candidate among unused rows&#xA;                    Dim bestScore As Integer = -1&#xA;                    For j As Integer = 0 To in_dt2.Rows.Count - 1&#xA;                        If Not usedRows.Contains(j) Then&#xA;                            Dim sc As Integer = score(v1, norm(in_dt2.Rows(j)(map2(k))))&#xA;                            If sc &gt;= fuzzyThreshold AndAlso sc &gt; bestScore Then&#xA;                                bestScore = sc&#xA;                                matchIdx = j&#xA;                            End If&#xA;                        End If&#xA;                    Next&#xA;                Else&#xA;                    For j As Integer = 0 To in_dt2.Rows.Count - 1&#xA;                        If Not usedRows.Contains(j) AndAlso norm(in_dt2.Rows(j)(map2(k))) = v1 Then&#xA;                            matchIdx = j&#xA;                            Exit For&#xA;                        End If&#xA;                    Next&#xA;                End If&#xA;            End If&#xA;        End If&#xA;        If matchIdx &gt;= 0 Then Exit For&#xA;    Next&#xA;&#xA;    If matchIdx &lt; 0 Then&#xA;        sb.Append(label &amp; &quot;: no matching row in Table2; &quot;)&#xA;        Continue For&#xA;    End If&#xA;&#xA;    usedRows.Add(matchIdx)&#xA;    Dim r2 As System.Data.DataRow = in_dt2.Rows(matchIdx)&#xA;&#xA;    ' Compare every column of table 1 (except excluded) with its counterpart&#xA;    For Each c As System.Data.DataColumn In in_dt1.Columns&#xA;        Dim k As String = canon(c.ColumnName)&#xA;        If excludeCols.Contains(k) Then Continue For&#xA;&#xA;        If Not map2.ContainsKey(k) Then&#xA;            If reportedMissingCols.Add(k) Then sb.Append(&quot;Column '&quot; &amp; c.ColumnName &amp; &quot;' missing in Table2; &quot;)&#xA;        Else&#xA;            Dim n1 As String = norm(r1(c))&#xA;            Dim n2 As String = norm(r2(map2(k)))&#xA;            If fuzzyCols.Contains(k) Then&#xA;                Dim sc As Integer = score(n1, n2)&#xA;                If sc &lt; fuzzyThreshold Then&#xA;                    sb.Append(label &amp; &quot;: &quot; &amp; c.ColumnName &amp; &quot; mismatch (&quot; &amp; r1(c).ToString() &amp; &quot; vs &quot; &amp; r2(map2(k)).ToString() &amp; &quot;, score &quot; &amp; sc &amp; &quot;); &quot;)&#xA;                End If&#xA;            ElseIf partialCols.Contains(k) Then&#xA;                Dim sc As Integer = partialScore(n1, n2)&#xA;                If sc &lt; partialThreshold Then&#xA;                    sb.Append(label &amp; &quot;: &quot; &amp; c.ColumnName &amp; &quot; mismatch (&quot; &amp; r1(c).ToString() &amp; &quot; vs &quot; &amp; r2(map2(k)).ToString() &amp; &quot;, score &quot; &amp; sc &amp; &quot;); &quot;)&#xA;                End If&#xA;            ElseIf n1 &lt;&gt; n2 Then&#xA;                sb.Append(label &amp; &quot;: &quot; &amp; c.ColumnName &amp; &quot; mismatch (&quot; &amp; r1(c).ToString() &amp; &quot; vs &quot; &amp; r2(map2(k)).ToString() &amp; &quot;); &quot;)&#xA;            End If&#xA;        End If&#xA;    Next&#xA;Next&#xA;&#xA;' Rows in table 2 that were never matched&#xA;For j As Integer = 0 To in_dt2.Rows.Count - 1&#xA;    If Not usedRows.Contains(j) Then&#xA;        Dim lbl As String = &quot;Row &quot; &amp; (j + 1)&#xA;        If map2.ContainsKey(&quot;NAME&quot;) Then lbl = in_dt2.Rows(j)(map2(&quot;NAME&quot;)).ToString().Trim()&#xA;        sb.Append(lbl &amp; &quot;: no matching row in Table1; &quot;)&#xA;    End If&#xA;Next&#xA;&#xA;out_AllMatch = (sb.Length = 0)&#xA;out_MismatchStatus = If(out_AllMatch, &quot;No Mismatch&quot;, sb.ToString().TrimEnd(&quot; &quot;c, &quot;;&quot;c))" DisplayName="Invoke Code-Validate All The Filed Of SF Owner And DLD Owner" sap:VirtualizedContainerService.HintSize="416,394" sap2010:WorkflowViewState.IdRef="InvokeCode_7">
+                            <ui:InvokeCode.Arguments>
+                              <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt1">[dt_OwnerDetails]</InArgument>
+                              <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt2">[dt_DLD_OwnerDetails]</InArgument>
+                              <OutArgument x:TypeArguments="x:Boolean" x:Key="out_AllMatch">[is_allValuesMatch]</OutArgument>
+                              <OutArgument x:TypeArguments="x:String" x:Key="out_MismatchStatus">[mismatchStatus]</OutArgument>
+                            </ui:InvokeCode.Arguments>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:InvokeCode>
+                        </Sequence>
+                      </If.Else>
+                    </If>
+                    <If Condition="[is_allValuesMatch AndAlso CDbl(completeDelayedSellFee) = 540.00 AndAlso CDbl(otherFee)=787.50]" DisplayName="If-Is all values matched" sap:VirtualizedContainerService.HintSize="688,5730" sap2010:WorkflowViewState.IdRef="If_2">
+                      <If.Then>
+                        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="686,4150" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <uix:NMouseScroll KeyModifiers="{x:Null}" CursorMotionType="[UiPath.UIAutomationNext.Enums.CursorMotionType.Smooth]" Direction="Down" DisplayName="Mouse Scroll-Check Box" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="652,315" sap2010:WorkflowViewState.IdRef="NMouseScroll_1" InteractionMode="DebuggerApi" MovementUnits="20" ScopeIdentifier="47a27d81-34e4-4114-98a9-47a706fc50c4" Version="V5">
+                            <uix:NMouseScroll.SearchedElement>
+                              <uix:SearchedElement>
+                                <uix:SearchedElement.InUiElement>
+                                  <InArgument x:TypeArguments="ui:UiElement" />
+                                </uix:SearchedElement.InUiElement>
+                                <uix:SearchedElement.OutUiElement>
+                                  <OutArgument x:TypeArguments="ui:UiElement" />
+                                </uix:SearchedElement.OutUiElement>
+                                <uix:SearchedElement.Target>
+                                  <uix:TargetAnchorable BrowserURL="oqood2.dubailand.gov.ae/en/services/workflows/complete-delayed-sale" ContentHash="mqNzh_f--0WTgyNaMBFgpg" DesignTimeRectangle="384, 840, 1457, 48" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='I confirm that all information and documents submitted are accurate, and I accept full legal and financial responsibility for this submission. The Department of Lands and Properties bears no responsibility for any incorrect information.' tag='LABEL' /&gt;" Guid="ce2a461d-28e4-47ed-9713-92fa1372180d" InformativeScreenshot="876679ea62af64c7d17979576d8eb73e.jpg" IsResponsive="True" Reference="8BpuFSLbfU-l7uzrMDPDhA/IQEmgwlvg06VAoi0y9y91A" ScopeSelectorArgument="&lt;html app='chrome.exe' title='*' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Complete" />
+                                </uix:SearchedElement.Target>
+                                <uix:SearchedElement.Timeout>
+                                  <InArgument x:TypeArguments="x:Double" />
+                                </uix:SearchedElement.Timeout>
+                              </uix:SearchedElement>
+                            </uix:NMouseScroll.SearchedElement>
+                          </uix:NMouseScroll>
+                          <uix:NCheck Action="Check" DelayAfter="1" DisplayName="Check/Uncheck 'Checkbox'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="652,195" sap2010:WorkflowViewState.IdRef="NCheck_1" ScopeIdentifier="47a27d81-34e4-4114-98a9-47a706fc50c4" Version="V5">
+                            <uix:NCheck.Target>
+                              <uix:TargetAnchorable BrowserURL="oqood2.dubailand.gov.ae/en/services/workflows/complete-delayed-sale" ContentHash="MgaKMZHAjEWhdeRKyNfc4g" DesignTimeRectangle="348, 852, 24, 25" ElementType="CheckBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='I confirm that all information and documents submitted are accur*' role='check box' /&gt;" Guid="0a83a991-26c9-4171-abac-9bc476b42282" InformativeScreenshot="fdc0e1a94a4b89ccd4c575f79fa7a4d9.jpg" IsResponsive="True" Reference="8BpuFSLbfU-l7uzrMDPDhA/eA7fScT6r0mkXwfQfetNzw" ScopeSelectorArgument="&lt;wnd app='chrome.exe' title='*' /&gt;" SearchSteps="Selector" SelectionStrategy="AA" Version="V6" WaitForReadyArgument="Complete" />
+                            </uix:NCheck.Target>
+                          </uix:NCheck>
+                          <uix:NClick ActivateBefore="True" ClickType="Single" CursorMotionType="[UiPath.UIAutomationNext.Enums.CursorMotionType.Smooth]" DelayAfter="3" DisplayName="Click 'Submit Application'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="652,194" sap2010:WorkflowViewState.IdRef="NClick_9" InteractionMode="DebuggerApi" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="47a27d81-34e4-4114-98a9-47a706fc50c4" Version="V5">
+                            <uix:NClick.Target>
+                              <uix:TargetAnchorable BrowserURL="oqood2.dubailand.gov.ae/en/services/workflows/complete-delayed-sale" ContentHash="YGuZUCfeaEi-VyyYIfg4IA" DesignTimeRectangle="1740, 989, 148, 40" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='Submit Application' tag='BUTTON' type='button' /&gt;" Guid="2f55f60f-d70d-43e0-905c-9343918e9ff1" InformativeScreenshot="c8cd7534e5d0eacadf31d72ee2dae4a9.jpg" IsResponsive="True" Reference="8BpuFSLbfU-l7uzrMDPDhA/K8RqRXNjeEeroyh4piKPjQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='*' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Complete" />
+                            </uix:NClick.Target>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </uix:NClick>
+                          <uix:NCheckState DisplayName="Check App State 'Submit application'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="652,3386" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="47a27d81-34e4-4114-98a9-47a706fc50c4" Version="V5">
+                            <uix:NCheckState.IfExists>
+                              <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="650,1707" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Submit'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="616,194" sap2010:WorkflowViewState.IdRef="NClick_5" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="47a27d81-34e4-4114-98a9-47a706fc50c4" Version="V5">
+                                  <uix:NClick.Target>
+                                    <uix:TargetAnchorable BrowserURL="oqood2.dubailand.gov.ae/en/services/workflows/complete-delayed-sale" ContentHash="85PeyzaZTEO-ByKusJbgiw" DesignTimeRectangle="973, 673, 71, 40" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='Submit' tag='BUTTON' type='button' /&gt;" Guid="ab28e293-3d56-45ed-9a32-939c26841b78" InformativeScreenshot="c96873096a9efc1349aa35591bb8fcbf.jpg" IsResponsive="True" Reference="8BpuFSLbfU-l7uzrMDPDhA/grCQ7CqPxkS1osTs96Mfaw" ScopeSelectorArgument="&lt;html app='chrome.exe' title='*' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Complete" />
+                                  </uix:NClick.Target>
+                                </uix:NClick>
+                                <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="616,123" sap2010:WorkflowViewState.IdRef="Delay_1" />
+                                <ui:UiElementExists DisplayName="Element Exists 'Procedure Number'" Exists="[is_ProcedureNumberGenerated]" sap:VirtualizedContainerService.HintSize="616,139" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
+                                  <ui:UiElementExists.Target>
+                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="c47c7aaf-0a29-47da-8b75-642bf5adb31b" InformativeScreenshot="e2d862f9e4ab7f83093aea8d8506222d" Selector="&lt;webctrl tag='P' aaname='Your application reference number is*Complete Delayed Sale' /&gt;" WaitForReady="COMPLETE">
+                                      <ui:Target.TimeoutMS>
+                                        <InArgument x:TypeArguments="x:Int32" />
+                                      </ui:Target.TimeoutMS>
+                                    </ui:Target>
+                                  </ui:UiElementExists.Target>
+                                </ui:UiElementExists>
+                                <ui:InterruptibleWhile CurrentIndex="{x:Null}" Condition="[is_ProcedureNumberGenerated=False]" DisplayName="While-Loop Till Procedure Number Is Generated" sap:VirtualizedContainerService.HintSize="616,57" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
+                                  <ui:InterruptibleWhile.Body>
+                                    <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="450,190" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <ui:UiElementExists DisplayName="Element Exists 'Procedure Number'" Exists="[is_ProcedureNumberGenerated]" sap:VirtualizedContainerService.HintSize="416,130" sap2010:WorkflowViewState.IdRef="UiElementExists_2">
+                                        <ui:UiElementExists.Target>
+                                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="c47c7aaf-0a29-47da-8b75-642bf5adb31b" InformativeScreenshot="e2d862f9e4ab7f83093aea8d8506222d" Selector="&lt;webctrl tag='P' aaname='Your application reference number is*Complete Delayed Sale' /&gt;" WaitForReady="COMPLETE">
+                                            <ui:Target.TimeoutMS>
+                                              <InArgument x:TypeArguments="x:Int32" />
+                                            </ui:Target.TimeoutMS>
+                                          </ui:Target>
+                                        </ui:UiElementExists.Target>
+                                      </ui:UiElementExists>
+                                    </Sequence>
+                                  </ui:InterruptibleWhile.Body>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </ui:InterruptibleWhile>
+                                <uix:NGetText DisplayName="Get Text 'ProcedureNumber'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="616,143" sap2010:WorkflowViewState.IdRef="NGetText_1" ScopeIdentifier="47a27d81-34e4-4114-98a9-47a706fc50c4" TextString="[out_ProcedureNumber]" Version="V5">
+                                  <uix:NGetText.Target>
+                                    <uix:TargetAnchorable ContentHash="WGHv9ix-QEqQgVkNHt1ZvA" DesignTimeRectangle="0, 0, 0, 0" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl tag='P' aaname='Your application reference number is*Complete Delayed Sale' /&gt;" Guid="aedb5a5a-713c-416c-adb3-bb95302954a1" IsResponsive="True" Reference="8BpuFSLbfU-l7uzrMDPDhA/bp2poAeoR0SzbeCKk2eRsQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='*' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="[UiPath.UIAutomationNext.Enums.NWaitForReady.Complete]" />
+                                  </uix:NGetText.Target>
+                                </uix:NGetText>
+                                <Assign DisplayName="Assign-Regex Procedure Number" sap:VirtualizedContainerService.HintSize="616,175" sap2010:WorkflowViewState.IdRef="Assign_3">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">[out_ProcedureNumber]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Match(out_ProcedureNumber, "(?&lt;=#)\d+/\d+").Value]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Go to Home Page'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="616,194" sap2010:WorkflowViewState.IdRef="NClick_6" InteractionMode="DebuggerApi" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="47a27d81-34e4-4114-98a9-47a706fc50c4" Version="V5">
+                                  <uix:NClick.Target>
+                                    <uix:TargetAnchorable BrowserURL="oqood2.dubailand.gov.ae/en/services/workflows/complete-delayed-sale/4862-2026-Complete%20Delayed%20Sale/successMaker" ContentHash="uiIZHewotkKJ2_BI5ImFpw" DesignTimeRectangle="662, 721, 290, 40" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl tag='BUTTON' aaname='Go to Home Page' type='button' /&gt;" Guid="1443a705-eae8-425a-868d-62d35ba3288b" InformativeScreenshot="deadbf7f8f280cbce0a972909bbf5bc7.jpg" IsResponsive="True" Reference="8BpuFSLbfU-l7uzrMDPDhA/CKYjSctou06wEF9M93R6ew" ScopeSelectorArgument="&lt;html app='chrome.exe' title='*' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Complete" />
+                                  </uix:NClick.Target>
+                                </uix:NClick>
+                                <ui:WriteCell Cell="[in_Config(&quot;ProcedureNumberColumnIndex&quot;).ToString + (in_TransactionNumber + 1).ToString()]" DisplayName="Write Cell Workbook-Procedure Number" sap:VirtualizedContainerService.HintSize="616,279" sap2010:WorkflowViewState.IdRef="WriteCell_3" SheetName="Sheet1" Text="[out_ProcedureNumber]" WorkbookPath="[in_Config(&quot;InputFolderPath&quot;).ToString+Date.Now.Year.ToString+&quot;\&quot;+Date.Now.ToString(&quot;MMMM&quot;)+&quot;\Report_TitleDeed_&quot;+Date.Now.ToString(&quot;dd-MMM-yyyy&quot;)+&quot;.xlsx&quot;]" />
+                                <Assign DisplayName="Assign-Is Process Submitted" sap:VirtualizedContainerService.HintSize="616,175" sap2010:WorkflowViewState.IdRef="Assign_1">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Boolean">[out_is_ProcessSubmitted]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Boolean">[true]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="sf_CreateMileStoneApplicationRegistered - Invoke Workflow File (DeveloperFramework\Salesforce\sf_CreateMileStoneApplicationRegistered.xaml)" sap:VirtualizedContainerService.HintSize="616,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="DeveloperFramework\Salesforce\sf_CreateMileStoneApplicationRegistered&amp;DSR.xaml">
+                                  <ui:InvokeWorkflowFile.Arguments>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_ProcedureNumber">[out_ProcedureNumber]</InArgument>
+                                    <InArgument x:TypeArguments="sd:DataRow" x:Key="in_TransactionItem">[in_TransactionItem]</InArgument>
+                                    <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
+                                  </ui:InvokeWorkflowFile.Arguments>
+                                </ui:InvokeWorkflowFile>
+                              </Sequence>
+                            </uix:NCheckState.IfExists>
+                            <uix:NCheckState.IfNotExists>
+                              <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="650,1343" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <Assign DisplayName="Assign-Is Process Submitted" sap:VirtualizedContainerService.HintSize="616,175" sap2010:WorkflowViewState.IdRef="Assign_2">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Boolean">[out_is_ProcessSubmitted]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Boolean">[false]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Discard'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="616,194" sap2010:WorkflowViewState.IdRef="NClick_7" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="47a27d81-34e4-4114-98a9-47a706fc50c4" Version="V5">
+                                  <uix:NClick.Target>
+                                    <uix:TargetAnchorable BrowserURL="oqood2.dubailand.gov.ae/en/services/workflows/complete-delayed-sale" ContentHash="gUnKf6mW206CfvfCJVYD1Q" DesignTimeRectangle="1731, 149, 103, 40" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl tag='BUTTON' aaname='Discard' type='button' /&gt;" Guid="f81298e2-3ea4-44e9-b16d-5be3f4ed1aa9" InformativeScreenshot="2d8e81e3322bc76d0f2c134ace037172.jpg" IsResponsive="True" Reference="8BpuFSLbfU-l7uzrMDPDhA/-mSGsRBEIUKXWAQid0Ll3g" ScopeSelectorArgument="&lt;html app='chrome.exe' title='*' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Complete" />
+                                  </uix:NClick.Target>
+                                </uix:NClick>
+                                <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Continue'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="616,194" sap2010:WorkflowViewState.IdRef="NClick_8" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="47a27d81-34e4-4114-98a9-47a706fc50c4" Version="V5">
+                                  <uix:NClick.Target>
+                                    <uix:TargetAnchorable BrowserURL="oqood2.dubailand.gov.ae/en/services/workflows/complete-delayed-sale" ContentHash="5YakRnCKVk2QvyULw7AvOA" DesignTimeRectangle="1116, 609, 83, 40" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='Continue' tag='BUTTON' type='button' /&gt;" Guid="8c636359-1ffc-4920-921b-5e43bb2e8857" InformativeScreenshot="0f1db0301395c0d385b2c91c136b4eb3.jpg" IsResponsive="True" Reference="8BpuFSLbfU-l7uzrMDPDhA/JgAraDkGiE6j1k6yNlakGg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='*' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Complete" />
+                                  </uix:NClick.Target>
+                                </uix:NClick>
+                                <ui:WriteCell Cell="[in_CaseStatusColumnIndex + (in_TransactionNumber + 1).ToString()]" DisplayName="Write Cell Workbook-update more than 1 joint owner" sap:VirtualizedContainerService.HintSize="616,279" sap2010:WorkflowViewState.IdRef="WriteCell_2" SheetName="Sheet1" Text="Failed To Submit Application" WorkbookPath="[&quot;C:\Users\SalesBot\Desktop\LAPBOT\Sales_OPS\Title Deed\Input\&quot;+Date.Now.Year.ToString+&quot;\&quot;+Date.Now.ToString(&quot;MMMM&quot;)+&quot;\Report_TitleDeed_&quot;+Date.Now.ToString(&quot;dd-MMM-yyyy&quot;)+&quot;.xlsx&quot;]" />
+                                <ui:SendOutlookMail Account="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" UseRichTextEditor="{x:Null}" Bcc="[in_Config(&quot;BCCMail&quot;).ToString]" Body="[string.Format(&quot;&lt;P&gt;&lt;SPAN&gt;Greetings,&lt;/SPAN&gt;&lt;/P&gt;&lt;P&gt;&lt;SPAN&gt;Failed To Submit Application Procedure Number Not Found&lt;/SPAN&gt;&lt;/P&gt;&lt;P&gt;&lt;SPAN&gt;Thank you&lt;/SPAN&gt;&lt;/P&gt;&quot;)]" ConnectionMode="LegacyConfiguration" CreatedAfterSolutionSupport="False" DisplayName="Send Outlook Desktop Mail Message" sap:VirtualizedContainerService.HintSize="616,327" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" Importance="High" IsBodyHtml="True" IsDraft="False" Sensitivity="Normal" Subject="[&quot;Title Deed | Failed To Submit Application &quot;+in_TransactionItem(&quot;Unit No.&quot;).ToString()]" To="[in_Config(&quot;MailTo&quot;).ToString]" UseISConnection="False">
+                                  <ui:SendOutlookMail.ConnectionDetailsBackupSlot>
+                                    <usau:BackupSlot x:TypeArguments="umae:ConnectionDetails" StoredValue="{x:Null}">
+                                      <usau:BackupSlot.BackupValues>
+                                        <scg:Dictionary x:TypeArguments="umae:ConnectionDetails, scg:List(x:Object)" />
+                                      </usau:BackupSlot.BackupValues>
+                                    </usau:BackupSlot>
+                                  </ui:SendOutlookMail.ConnectionDetailsBackupSlot>
+                                  <ui:SendOutlookMail.Files>
+                                    <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                                  </ui:SendOutlookMail.Files>
+                                </ui:SendOutlookMail>
+                                <Throw Exception="[new BusinessRuleException(&quot;Failed To Submit Application&quot;)]" sap:VirtualizedContainerService.HintSize="616,114" sap2010:WorkflowViewState.IdRef="Throw_3" />
+                              </Sequence>
+                            </uix:NCheckState.IfNotExists>
+                            <uix:NCheckState.Target>
+                              <uix:TargetAnchorable BrowserURL="oqood2.dubailand.gov.ae/en/services/workflows/complete-delayed-sale" ContentHash="0nzLm6TCPUaGR2Ec2vLoLQ" DesignTimeRectangle="801, 537, 334, 24" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl tag='H6' aaname='Submit application?' /&gt;" Guid="3837604a-8799-4f2b-abcf-2e73c3c4d773" InformativeScreenshot="13d26c9faf3061aee548a988e28fd59b.jpg" IsResponsive="True" Reference="8BpuFSLbfU-l7uzrMDPDhA/1owMen_Rk0m2qNVmp3HFGg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='*' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Complete" />
+                            </uix:NCheckState.Target>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </uix:NCheckState>
+                        </Sequence>
+                      </If.Then>
+                      <If.Else>
+                        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="686,1418" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <uix:NClick ActivateBefore="True" ClickType="Single" CursorMotionType="[UiPath.UIAutomationNext.Enums.CursorMotionType.Smooth]" DisplayName="Click 'Discard'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="652,194" sap2010:WorkflowViewState.IdRef="NClick_3" InteractionMode="DebuggerApi" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="47a27d81-34e4-4114-98a9-47a706fc50c4" Version="V5">
+                            <uix:NClick.Target>
+                              <uix:TargetAnchorable BrowserURL="oqood2.dubailand.gov.ae/en/services/workflows/complete-delayed-sale" ContentHash="gUnKf6mW206CfvfCJVYD1Q" DesignTimeRectangle="1731, 149, 103, 40" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl tag='BUTTON' aaname='Discard' type='button' /&gt;" Guid="f81298e2-3ea4-44e9-b16d-5be3f4ed1aa9" InformativeScreenshot="2d8e81e3322bc76d0f2c134ace037172.jpg" IsResponsive="True" Reference="8BpuFSLbfU-l7uzrMDPDhA/-mSGsRBEIUKXWAQid0Ll3g" ScopeSelectorArgument="&lt;html app='chrome.exe' title='*' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Complete" />
+                            </uix:NClick.Target>
+                          </uix:NClick>
+                          <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Continue'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="652,194" sap2010:WorkflowViewState.IdRef="NClick_4" InteractionMode="DebuggerApi" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="47a27d81-34e4-4114-98a9-47a706fc50c4" Version="V5">
+                            <uix:NClick.Target>
+                              <uix:TargetAnchorable BrowserURL="oqood2.dubailand.gov.ae/en/services/workflows/complete-delayed-sale" ContentHash="5YakRnCKVk2QvyULw7AvOA" DesignTimeRectangle="1116, 609, 83, 40" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='Continue' tag='BUTTON' type='button' /&gt;" Guid="8c636359-1ffc-4920-921b-5e43bb2e8857" InformativeScreenshot="0f1db0301395c0d385b2c91c136b4eb3.jpg" IsResponsive="True" Reference="8BpuFSLbfU-l7uzrMDPDhA/JgAraDkGiE6j1k6yNlakGg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='*' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Complete" />
+                            </uix:NClick.Target>
+                          </uix:NClick>
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="652,175" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Error" Message="[&quot;Owner Details Not Matching &quot;+mismatchStatus]" />
+                          <ui:WriteCell Cell="[in_Config(&quot;CaseStatusColumnIndex&quot;).ToString+ (in_TransactionNumber + 1).ToString()]" DisplayName="Write Cell Workbook-update more than 1 joint owner" sap:VirtualizedContainerService.HintSize="652,279" sap2010:WorkflowViewState.IdRef="WriteCell_1" SheetName="Sheet1" Text="[If (CDbl(completeDelayedSellFee) = 540.00 AndAlso CDbl(otherFee)=787.50, &quot;Owner Details Not Matching: &quot;+mismatchStatus,&quot;Owner Details Not Matching Or Fee Missmatch&quot;)]" WorkbookPath="[&quot;C:\Users\SalesBot\Desktop\LAPBOT\Sales_OPS\Title Deed\Input\&quot;+Date.Now.Year.ToString+&quot;\&quot;+Date.Now.ToString(&quot;MMMM&quot;)+&quot;\Report_TitleDeed_&quot;+Date.Now.ToString(&quot;dd-MMM-yyyy&quot;)+&quot;.xlsx&quot;]" />
+                          <Assign DisplayName="Assign-Is Process Submitted" sap:VirtualizedContainerService.HintSize="652,175" sap2010:WorkflowViewState.IdRef="Assign_4">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Boolean">[out_is_ProcessSubmitted]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Boolean">[false]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <ui:SendOutlookMail Account="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" UseRichTextEditor="{x:Null}" Bcc="[in_Config(&quot;BCCMail&quot;).ToString]" Body="[string.Format(&quot;&lt;P&gt;&lt;SPAN&gt;Greetings,&lt;/SPAN&gt;&lt;/P&gt;&lt;/br&gt;&lt;P&gt;&lt;SPAN&gt;Details are not matching please refer to below&lt;/SPAN&gt;&lt;/P&gt;&lt;/br&gt;&lt;P&gt;&lt;SPAN&gt;{0}&lt;/SPAN&gt;&lt;/P&gt;,&lt;br&gt;&lt;P&gt;&lt;SPAN&gt;Thank you&lt;/SPAN&gt;&lt;/P&gt;&quot;,mismatchStatus)]" Cc="[in_Config(&quot;CCMail&quot;).ToString]" ConnectionMode="LegacyConfiguration" CreatedAfterSolutionSupport="False" DisplayName="Send Outlook Desktop Mail Message" sap:VirtualizedContainerService.HintSize="652,227" sap2010:WorkflowViewState.IdRef="SendOutlookMail_2" Importance="High" IsBodyHtml="True" IsDraft="False" Sensitivity="Normal" Subject="[&quot;Title Deed | Details Mismatch &quot;+in_TransactionItem(&quot;Unit No.&quot;).ToString()]" To="[in_Config(&quot;MailTo&quot;).ToString]" UseISConnection="False">
+                            <ui:SendOutlookMail.ConnectionDetailsBackupSlot>
+                              <usau:BackupSlot x:TypeArguments="umae:ConnectionDetails" StoredValue="{x:Null}">
+                                <usau:BackupSlot.BackupValues>
+                                  <scg:Dictionary x:TypeArguments="umae:ConnectionDetails, scg:List(x:Object)" />
+                                </usau:BackupSlot.BackupValues>
+                              </usau:BackupSlot>
+                            </ui:SendOutlookMail.ConnectionDetailsBackupSlot>
+                            <ui:SendOutlookMail.Files>
+                              <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                            </ui:SendOutlookMail.Files>
+                          </ui:SendOutlookMail>
+                          <Throw Exception="[new UiPath.Core.BusinessRuleException(&quot;Details not matching&quot;)]" sap:VirtualizedContainerService.HintSize="652,114" sap2010:WorkflowViewState.IdRef="Throw_1" />
+                        </Sequence>
+                      </If.Else>
+                    </If>
+                  </Sequence>
+                </ActivityAction>
+              </uix:NApplicationCard.Body>
+              <uix:NApplicationCard.OCREngine>
+                <ActivityFunc x:TypeArguments="sd1:Image, scg:IEnumerable(scg:KeyValuePair(sd2:Rectangle, x:String))">
+                  <ActivityFunc.Argument>
+                    <DelegateInArgument x:TypeArguments="sd1:Image" Name="Image" />
+                  </ActivityFunc.Argument>
+                </ActivityFunc>
+              </uix:NApplicationCard.OCREngine>
+              <uix:NApplicationCard.TargetApp>
+                <uix:TargetApp Area="-8, -8, 1936, 1056" BrowserType="Chrome" ContentHash="QZvsYAWPoE2ktYkNc3bS7g" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAbxSURBVFhHpZZtTFvnFcf9pWuypg3tmjVrGmLeEoMBG2PaJBDb2CkvyQJpvlXtFqRpmrSXT5s67a3pl0nTptXkhdAklEsCbZdG3VsrVe3AhhBCs3ZDi5ZAo21OA5hAOztNmrXhXj9n//M8j415SUe7I/30P+fh+vzPufcasC03YgF3zkzQ0zITrDLAyPshb3ImVEXTQS/NBDn3RmeClcZ0qHIvX6s/9v/HVIPbfjVU1com2kxcra2k6VovqBQM14sIVBpTAbddt/nsoTb2htlUGgWUWcYQ9dWAR0wFOPcgV8r1VMCj8AOfZ59uufzgyWES00a6sUfm8ww0cTZiuPZViLi/Qp1xrohNbV7m3ZiurXChUSzbIIO/QjDKUBlpE4r73BmdhE5ucys4V/X/HoI3h1EsvYFSjTaa9Kmm8W3aSDXPMJGmxkWTNS4BBaoer3ZhCMfSQ/Azh1FMGWU1z5ipxnIA1hq3kDUbaENlJHMxLmul49XljFDqii35LZnwucMZE4XI3khvo41Uzg1lzc1l7aIrOGO0KV3ZupAycWVLWVjbqnC/tNve/h3/nAmboqk2I7mNNpn57jfoxss9ZMYnKR3i5rskZl4la2QXWecqGcGaYn3LQ5JzHpx5BM5kTcNZ70PlS3uMbUYzjYUq1Fb6dknFxDKvr6YbJ3u0JVE8Kah/bBaYdGkqpU8xzNSLZL3jJ/OtChgxbgzhxjDQYbeqoajVXXAbu3M8LzxGzL4fBjO3io1Z39tSRuN1W+nWpTFp8JeYSd8yPqKqZ65R1T4N8qbwdYqOzsprxM0xst6ugZmLDZUOc85aDi3HEOVJGsG74H5hd4u7ZzdVANb+Jq80ZfCsBOv133TLxkein5AXhhmezso1R3ENh4h3K7PhMk1pljJOMXumpMXm7m42ALm6m4S7p1k8+Ys6ury5lN7b7BTMxGP1siFvV/l0UuLROse1eefv4C5xpC7sFdZZJ5lnS8hagtRwiWFzdTdHXScwwIkmTTO9useLIZwUe8RJN177nWy289kPqeJnyTlglNF0rutvdt6QnxFTJ4R5thhm2TgwlINS0NRQ8Yit/HhTsvz4LkpT1rWLth9spL/7yij2cIm4dWmUxuIWudF8MYnbkKTJJF7MTyZguBGGmiEJMSZInS1K2MqMr8JUImSu659/u5piVcWCN4lcnCXXTxNLA7P5dYLKoRH9QlpDRWSeKSSLQW4NaZV1gbCVdu6kUpiWGjuF1C6lj7Q30vkap2zSd/EWlaHpQtgoW7PP+zA0h3WmAEb5wjoDhgowTD7O5uABks7OHUKxk6BAqvjeUz5hxidoMpGi0p/8+zMxiscmProAkzwyB/Ogdgxhl7XKN3CdsJU8v+OvJR2NpNhBqGXuZH2+UQz2n5SbtHRcJycaO38MWD+Ful9dk59JTZ+CGRvlCnMwlyzJBrBecG4Oro/aHB0NRvGxRpqjQQ7gONYgOP/6a0/JZn/+1yyVwLwYKP1A5nP13HkvHhmH9fYWMk+vBw/B9CHBqnOyWE+vM2yOow0tIGPIyPpovQCsdPy8+ioe6rtJjh99QA6YSF0Izg/1/kdee228E4brYLYO2z6I/EGYK6y0Dqzba7MbgZziI/XJTUfqKRsH69E6wXi79ojR9/8hG//pwi0K/jJJm2CYzdeOfUjn/qlevInEu5QYLCFz4CuatTBdK9JqnX5A5hTNUX+WNz1X37rpuTraqJH5kTqRroHwGntE1/nfSgOOi5OWHIaZwEuaDr6m849bsN1aGD+QwWLt/7JUa2CNsPrXGNKcw9HeYN/Y/igxRVrTeRaisH27CPQ8Sa+MvkEX9R3hGL9+lYy/vUJP/P4H5O/wwWiNYkBr//0ytwbuFzIH2H7+f0ZFbaHWosPbKU1hG+ujxKaFhyWkNCT4ZxldwKk/FMHkS8pU6n3YVipZyFlTA/ct/k/ZHg7kFBwOxQraVOOCQyEqBKx8JpXP2ubX2Tze9TDM7hVm9F4YAlaAM605wormxLTl4sAQ9oK2YCzdMP9gkApA/qGgkHCu66XOL7+JZxxdjQHuAathuBqGUNSa2KJbvzB4iPwDtTHZ9EAt5R2sFQznafJY8XNWmR8I0ve7y8mM3I1N71EKrOgqmK4SnM9G7ob5ik83TwcPkbe/NgbIfiAg8vYHpMochvb9Kk9T076VLr+B5xxZxabQu+ZhRe6Kfbxc8+zAIM/YW2F+W/wYxi86Xs4ns28ljL4oMSMrBNdmBPStDGe+758n+G7khv3GhrCfNrT6Re6zPsF5btgn6+q2zTBZobmTzF4QuTNp9q5s/fj1z7H17QKD5Kz/9bYWDNCFAaLQJKCTp/A7PXJHItX7hZFU7wpjtu+OluVvbLP9F5lmWAkTeM7rAAAAAElFTkSuQmCC" InformativeScreenshot="6c4baaa15e53cf066285e79a1bb00cca.jpg" Reference="8BpuFSLbfU-l7uzrMDPDhA/Yy8b5o8U9UWjO9cog5WzaQ" Selector="&lt;html app='chrome.exe' title='*' /&gt;" Url="https://oqood2.dubailand.gov.ae/en/dashboard" Version="V3">
+                  <uix:TargetApp.SapInfo>
+                    <uix:SAPElementInfo IsSapSubsystem="False" WebAutomationFramework="Default" />
+                  </uix:TargetApp.SapInfo>
+                </uix:TargetApp>
+              </uix:NApplicationCard.TargetApp>
+            </uix:NApplicationCard>
+          </Sequence>
+        </TryCatch.Try>
+        <TryCatch.Catches>
+          <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+            <ActivityAction x:TypeArguments="s:Exception">
+              <ActivityAction.Argument>
+                <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+              </ActivityAction.Argument>
+              <Sequence DisplayName="Catch" sap:VirtualizedContainerService.HintSize="758,349" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="724,175" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Error" Message="[exception.Message+Environment.NewLine+exception.Source]" />
+                <Throw Exception="[New SystemException(&quot;Failed To Process Case Final Payment&quot;)]" sap:VirtualizedContainerService.HintSize="724,114" sap2010:WorkflowViewState.IdRef="Throw_2" />
+              </Sequence>
+            </ActivityAction>
+          </Catch>
+          <Catch x:TypeArguments="ui:BusinessRuleException" sap2010:WorkflowViewState.IdRef="Catch`1_4">
+            <ActivityAction x:TypeArguments="ui:BusinessRuleException">
+              <ActivityAction.Argument>
+                <DelegateInArgument x:TypeArguments="ui:BusinessRuleException" Name="exception" />
+              </ActivityAction.Argument>
+              <Sequence DisplayName="Catch" sap:VirtualizedContainerService.HintSize="758,108" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Rethrow sap:VirtualizedContainerService.HintSize="724,48" sap2010:WorkflowViewState.IdRef="Rethrow_1" />
+              </Sequence>
+            </ActivityAction>
+          </Catch>
+        </TryCatch.Catches>
+        <TryCatch.Finally>
+          <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="758,25" sap2010:WorkflowViewState.IdRef="Sequence_5">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Sequence>
+        </TryCatch.Finally>
+      </TryCatch>
+    </Sequence>
+  </Sequence>
+</Activity>

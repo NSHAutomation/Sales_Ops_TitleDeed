@@ -1,0 +1,6 @@
+{
+  "Name": "SalesOps_TitleDeed",
+  "ProjectType": "Process",
+  "Description": "Robotic Enterprise Framework",
+  "MainFile": "Main.xaml"
+}

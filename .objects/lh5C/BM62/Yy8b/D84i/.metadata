@@ -1,0 +1,17 @@
+﻿{
+  "Name": "Get Text Complete Delayed Sell Fee",
+  "Type": "Element",
+  "TaxonomyType": "Label",
+  "Id": "D84igRvIVESKUNRnotzUiw",
+  "Reference": "8BpuFSLbfU-l7uzrMDPDhA/D84igRvIVESKUNRnotzUiw",
+  "ParentRef": "8BpuFSLbfU-l7uzrMDPDhA/Yy8b5o8U9UWjO9cog5WzaQ",
+  "Created": "2026-11-05T09:14:46.0251635Z",
+  "Updated": "2026-11-05T09:17:12.3948091Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=26.10.6.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=26.9.0.0, Culture=neutral, PublicKeyToken=null"
+  ],
+  "UpdatedBy": [
+    "UiPath.Platform, Version=26.9.0.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}
