@@ -118,7 +118,7 @@
       <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="sf_CreateMileStone" sap:VirtualizedContainerService.HintSize="1386,4152" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="sf_CreateMileStone" sap:VirtualizedContainerService.HintSize="1463,4152" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -606,7 +606,7 @@
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
                             </uix:NNavigateBrowser>
-                            <ui:SendOutlookMail Account="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" UseRichTextEditor="{x:Null}" Bcc="[in_Config(&quot;BCCMail&quot;).ToString]" Body="[string.Format(&quot;&lt;P&gt;&lt;SPAN&gt;Greetings,&lt;/SPAN&gt;&lt;/P&gt;&lt;P&gt;&lt;SPAN&gt;Milestone created as Title Deed Application Registered, TD Customer Details Verified, DSR Submitted To DLD with procedure number: {0}&lt;/SPAN&gt;&lt;/P&gt;&lt;P&gt;&lt;SPAN&gt;Thank you&lt;/SPAN&gt;&lt;/P&gt;&quot;,in_ProcedureNumber)]" ConnectionMode="LegacyConfiguration" CreatedAfterSolutionSupport="False" DisplayName="Send Outlook Desktop Mail Message" sap:VirtualizedContainerService.HintSize="416,218" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" Importance="High" IsBodyHtml="True" IsDraft="False" Sensitivity="Normal" Subject="[&quot;Title Deed | Milestone Created For Title Deed Application Registered | &quot;+in_TransactionItem(&quot;Unit No.&quot;).ToString()]" To="[in_Config(&quot;MailTo&quot;).ToString]" UseISConnection="False">
+                            <ui:SendOutlookMail Account="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" UseRichTextEditor="{x:Null}" Bcc="[in_Config(&quot;BCCMail&quot;).ToString]" Body="[string.Format(&quot;&lt;P&gt;&lt;SPAN&gt;Greetings,&lt;/SPAN&gt;&lt;/P&gt;&lt;P&gt;&lt;SPAN&gt;Title Deed Registered &lt;br&gt; Milestone created as Title Deed Application Registered, TD Customer Details Verified, DSR Submitted To DLD with procedure number: {0}&lt;/SPAN&gt;&lt;/P&gt;&lt;P&gt;&lt;SPAN&gt;Thank you&lt;/SPAN&gt;&lt;/P&gt;&quot;,in_ProcedureNumber)]" ConnectionMode="LegacyConfiguration" CreatedAfterSolutionSupport="False" DisplayName="Send Outlook Desktop Mail Message" sap:VirtualizedContainerService.HintSize="416,218" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" Importance="High" IsBodyHtml="True" IsDraft="False" Sensitivity="Normal" Subject="[&quot;Title Deed | Milestone Created For Title Deed Application Registered | &quot;+in_TransactionItem(&quot;Unit No.&quot;).ToString()]" To="[in_Config(&quot;MailTo&quot;).ToString]" UseISConnection="False">
                               <ui:SendOutlookMail.ConnectionDetailsBackupSlot>
                                 <usau:BackupSlot x:TypeArguments="umae:ConnectionDetails" StoredValue="{x:Null}">
                                   <usau:BackupSlot.BackupValues>

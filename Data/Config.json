@@ -7,7 +7,9 @@
 	  "InputFolderPath":"C:\\Users\\SalesBot\\Desktop\\LAPBOT\\Sales_OPS\\Title Deed\\Input\\",
 	  "OutputFolderPath":"C:\\Users\\SalesBot\\Desktop\\LAPBOT\\Sales_OPS\\Title Deed\\Output\\",
 	  "SFUsername":"Automation@nshama.ae",
-	  "SFPassword":"Harshith@1188"
+	  "SFPassword":"Harshith@1188",
+	  "ProcedureNumberColumnIndex":"Z",
+	  "CaseStatusColumnIndex":"AA"
   },
   "Constants": {
     "MaxRetryNumber": 0,

@@ -152,7 +152,7 @@
       <AssemblyReference>UiPath.Workflow</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="dld_2_0_FinalPayment" sap:VirtualizedContainerService.HintSize="1425,10012" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="dld_2_0_FinalPayment" sap:VirtualizedContainerService.HintSize="1877,10012" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Int32" Default="0" Name="currentNumber" />
       <Variable x:TypeArguments="sd:DataTable" Name="dt_DLD_OwnerDetails" />
@@ -485,7 +485,7 @@
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
                           </uix:NClick>
-                          <uix:NCheckState DisplayName="Check App State 'Submit application'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="652,3386" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="47a27d81-34e4-4114-98a9-47a706fc50c4" Version="V5">
+                          <uix:NCheckState DisplayName="Check App State 'Submit application'" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="652,3386" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="47a27d81-34e4-4114-98a9-47a706fc50c4" Timeout="10" Version="V5">
                             <uix:NCheckState.IfExists>
                               <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="650,1707" sap2010:WorkflowViewState.IdRef="Sequence_17">
                                 <sap:WorkflowViewStateService.ViewState>
