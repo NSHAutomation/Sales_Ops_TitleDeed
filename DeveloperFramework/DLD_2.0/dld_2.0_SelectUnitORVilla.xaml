@@ -146,7 +146,7 @@
       <AssemblyReference>UiPath.CodedWorkflows</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="dld_2_0_ApplicationProgress" sap:VirtualizedContainerService.HintSize="1877,7862" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="dld_2_0_ApplicationProgress" sap:VirtualizedContainerService.HintSize="1913,7569" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dt_ProjectNames" />
       <Variable x:TypeArguments="scg:List(x:String)" Name="listProjectNameExcel" />
@@ -154,45 +154,44 @@
       <Variable x:TypeArguments="x:Int32" Default="0" Name="matchedScore" />
       <Variable x:TypeArguments="sd:DataTable" Name="dt_BuildingNames" />
       <Variable x:TypeArguments="upr:ILocalResource" Name="screenshotRef" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_DldPropertyDetails" />
+      <Variable x:TypeArguments="x:String" Name="buildingName" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="Sequence-Select Unit/Villa" sap:VirtualizedContainerService.HintSize="758,7839" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence DisplayName="Sequence-Select Unit/Villa" sap:VirtualizedContainerService.HintSize="758,7546" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <TryCatch DisplayName="Try Catch-Select Unit/Villa" sap:VirtualizedContainerService.HintSize="724,7756" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <TryCatch DisplayName="Try Catch-Select Unit/Villa" sap:VirtualizedContainerService.HintSize="724,7463" sap2010:WorkflowViewState.IdRef="TryCatch_1">
         <TryCatch.Try>
-          <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="722,6493" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="722,6200" sap2010:WorkflowViewState.IdRef="Sequence_3">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <uix:NApplicationCard AttachMode="ByInstance" DisplayName="DLD 2.0" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="688,6433" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" ScopeGuid="97700153-78aa-4fdd-b5ac-e575717a7cb9" Version="V2">
+            <uix:NApplicationCard AttachMode="ByInstance" DisplayName="DLD 2.0" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="688,6140" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" ScopeGuid="97700153-78aa-4fdd-b5ac-e575717a7cb9" Version="V2">
               <uix:NApplicationCard.Body>
                 <ActivityAction x:TypeArguments="x:Object">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="686,6238" sap2010:WorkflowViewState.IdRef="Sequence_6">
-                    <Sequence.Variables>
-                      <Variable x:TypeArguments="sd:DataTable" Name="dt_DldPropertyDetails" />
-                    </Sequence.Variables>
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="686,5945" sap2010:WorkflowViewState.IdRef="Sequence_6">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <If Condition="[in_TransactionItem(&quot;Unit No.&quot;).ToString.Trim.ToLower.Contains(&quot;v&quot;)]" DisplayName="Selects property type based on Unit / villa . value" sap:VirtualizedContainerService.HintSize="652,525" sap2010:WorkflowViewState.IdRef="If_1">
+                    <If Condition="[in_TransactionItem(&quot;Unit No.&quot;).ToString.Trim.ToLower.Contains(&quot;v&quot;)]" DisplayName="Selects property type based on Unit / villa . value" sap:VirtualizedContainerService.HintSize="652,57" sap2010:WorkflowViewState.IdRef="If_1">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
@@ -614,7 +613,15 @@
                         <uix:TargetAnchorable BrowserURL="oqood2.dubailand.gov.ae/en/services/workflows/complete-delayed-sale" ContentHash="FW5wBZWLrkejRbAq7l3Xpw" DesignTimeRectangle="848, 489, 233, 40" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='Search Buildings' tag='BUTTON' type='button' /&gt;" Guid="0d2f64eb-31ec-490f-b9fa-de53a2798bb6" InformativeScreenshot="2d14951588440c803b2a39064d210758.jpg" IsResponsive="True" Reference="8BpuFSLbfU-l7uzrMDPDhA/pykm4Ljrn0evXaC-BpirWQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='*' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Complete" />
                       </uix:NClick.Target>
                     </uix:NClick>
-                    <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'INPUT Search-ProjectName'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="652,246" sap2010:WorkflowViewState.IdRef="NTypeInto_8" InteractionMode="HardwareEvents" ScopeIdentifier="97700153-78aa-4fdd-b5ac-e575717a7cb9" Text="[string.Format(&quot;{0}[k(enter)]&quot;, in_TransactionItem(&quot;DLD Building Sub Name&quot;).ToString)]" Version="V5">
+                    <Assign DisplayName="Assign-Building Name" sap:VirtualizedContainerService.HintSize="652,175" sap2010:WorkflowViewState.IdRef="Assign_7">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[buildingName]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[If(in_TransactionItem("DLD Building Sub Name").ToString = "", in_TransactionItem("Building Name").ToString,in_TransactionItem("DLD Building Sub Name").ToString)]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'INPUT Search-ProjectName'" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="652,246" sap2010:WorkflowViewState.IdRef="NTypeInto_8" InteractionMode="HardwareEvents" ScopeIdentifier="97700153-78aa-4fdd-b5ac-e575717a7cb9" Text="[string.Format(&quot;{0}[k(enter)]&quot;, buildingName)]" Version="V5">
                       <uix:NTypeInto.Target>
                         <uix:TargetAnchorable BrowserURL="oqood2.dubailand.gov.ae/en/services/workflows/complete-delayed-sale" ContentHash="nuTN8lJLYUW2zlStUxr7_Q" DesignTimeRectangle="385, 590, 184, 40" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl tag='INPUT' type='text' /&gt;" Guid="85b36bb4-d559-4b45-b003-7187528b6c1f" InformativeScreenshot="a88a4319bdc7ff7bf72f8fa98b52e6f6.jpg" IsResponsive="True" Reference="8BpuFSLbfU-l7uzrMDPDhA/tGlnHfh4zUSuxG9lB7p_HA" ScopeSelectorArgument="&lt;html app='chrome.exe' title='*' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Complete" />
                       </uix:NTypeInto.Target>
