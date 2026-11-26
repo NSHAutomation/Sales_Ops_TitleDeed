@@ -115,7 +115,7 @@
       <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="dld_2_0" sap:VirtualizedContainerService.HintSize="1425,2378" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="dld_2_0" sap:VirtualizedContainerService.HintSize="965,2378" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -135,7 +135,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Never]" DisplayName="DLD 2.0" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="688,1379" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" OpenMode="[UiPath.UIAutomationNext.Enums.NAppOpenMode.IfNotOpen]" ScopeGuid="b3a31ad0-bdf4-4e93-986a-0254f42f8348" Version="V2">
+            <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Never]" DisplayName="DLD 2.0" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="688,1379" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" OpenMode="[UiPath.UIAutomationNext.Enums.NAppOpenMode.IfNotOpen]" ScopeGuid="b3a31ad0-bdf4-4e93-986a-0254f42f8348" Version="V2" WindowResize="Maximize">
               <uix:NApplicationCard.Body>
                 <ActivityAction x:TypeArguments="x:Object">
                   <ActivityAction.Argument>
@@ -233,7 +233,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
                 <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="688,175" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Warn" Message="[exception.Message+Environment.NewLine+ exception.Source]" />
-                <ui:SendOutlookMail Account="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" UseRichTextEditor="{x:Null}" Bcc="[in_Config(&quot;BCCMail&quot;).ToString]" Body="[string.Format(&quot;&lt;P&gt;&lt;SPAN&gt;Greetings,&lt;/SPAN&gt;&lt;/P&gt;&lt;P&gt;&lt;SPAN&gt;DLD 2.0 &lt;/SPAN&gt;&lt;SPAN&gt;login failed&lt;/SPAN&gt;&lt;SPAN&gt;, BOT terminated&lt;/SPAN&gt;&lt;/P&gt;&lt;P&gt;&lt;SPAN&gt;Thank you&lt;/SPAN&gt;&lt;/P&gt;&quot;)]" Cc="[in_Config(&quot;CCMail&quot;).ToString]" ConnectionMode="LegacyConfiguration" CreatedAfterSolutionSupport="False" DisplayName="Send Outlook Desktop Mail Message" sap:VirtualizedContainerService.HintSize="688,327" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" Importance="High" IsBodyHtml="True" IsDraft="False" Sensitivity="Normal" Subject="Title Deed | DLD 2.0 Login Failed " To="[in_Config(&quot;MailTo&quot;).ToString]" UseISConnection="False">
+                <ui:SendOutlookMail ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" UseRichTextEditor="{x:Null}" Account="[in_Config(&quot;BCCMail&quot;).ToString]" Bcc="[in_Config(&quot;BCCMail&quot;).ToString]" Body="[string.Format(&quot;&lt;P&gt;&lt;SPAN&gt;Greetings,&lt;/SPAN&gt;&lt;/P&gt;&lt;P&gt;&lt;SPAN&gt;DLD 2.0 &lt;/SPAN&gt;&lt;SPAN&gt;login failed&lt;/SPAN&gt;&lt;SPAN&gt;, BOT terminated&lt;/SPAN&gt;&lt;/P&gt;&lt;P&gt;&lt;SPAN&gt;Thank you&lt;/SPAN&gt;&lt;/P&gt;&quot;)]" Cc="[in_Config(&quot;CCMail&quot;).ToString]" ConnectionMode="LegacyConfiguration" CreatedAfterSolutionSupport="False" DisplayName="Send Outlook Desktop Mail Message" sap:VirtualizedContainerService.HintSize="688,327" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" Importance="High" IsBodyHtml="True" IsDraft="False" Sensitivity="Normal" Subject="Title Deed | DLD 2.0 Login Failed " To="[in_Config(&quot;MailTo&quot;).ToString]" UseISConnection="False">
                   <ui:SendOutlookMail.ConnectionDetailsBackupSlot>
                     <usau:BackupSlot x:TypeArguments="umae:ConnectionDetails" StoredValue="{x:Null}">
                       <usau:BackupSlot.BackupValues>

@@ -126,7 +126,7 @@
       <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="sf_ReadReport" sap:VirtualizedContainerService.HintSize="1072,5106" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="sf_ReadReport" sap:VirtualizedContainerService.HintSize="965,5106" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dt_ReportCSV" />
       <Variable x:TypeArguments="x:Boolean" Name="is_ReportExcelExist" />
@@ -409,7 +409,7 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                   <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;No Transaction Rows Found&quot;]" />
-                  <ui:SendOutlookMail Account="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" UseRichTextEditor="{x:Null}" Bcc="[in_Config(&quot;BCCMail&quot;).ToString]" Body="[string.Format(&quot;&lt;P&gt;&lt;SPAN&gt;Greetings,&lt;/SPAN&gt;&lt;/P&gt;&lt;P&gt;&lt;SPAN&gt;No Data Found to process&lt;/SPAN&gt;&lt;SPAN&gt;, BOT terminated&lt;/SPAN&gt;&lt;/P&gt;&lt;P&gt;&lt;SPAN&gt;Thank you&lt;/SPAN&gt;&lt;/P&gt;&quot;)]" Cc="[in_Config(&quot;CCMail&quot;).ToString]" ConnectionMode="LegacyConfiguration" CreatedAfterSolutionSupport="False" DisplayName="Send Outlook Desktop Mail Message" sap:VirtualizedContainerService.HintSize="416,327" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" Importance="High" IsBodyHtml="True" IsDraft="False" Sensitivity="Normal" Subject="Title Deed | Transaction Rows Not Found " To="[in_Config(&quot;MailTo&quot;).ToString]" UseISConnection="False">
+                  <ui:SendOutlookMail ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" UseRichTextEditor="{x:Null}" Account="[in_Config(&quot;BCCMail&quot;).ToString]" Bcc="[in_Config(&quot;BCCMail&quot;).ToString]" Body="[string.Format(&quot;&lt;P&gt;&lt;SPAN&gt;Greetings,&lt;/SPAN&gt;&lt;/P&gt;&lt;P&gt;&lt;SPAN&gt;No Data Found to process&lt;/SPAN&gt;&lt;SPAN&gt;, BOT terminated&lt;/SPAN&gt;&lt;/P&gt;&lt;P&gt;&lt;SPAN&gt;Thank you&lt;/SPAN&gt;&lt;/P&gt;&quot;)]" Cc="[in_Config(&quot;CCMail&quot;).ToString]" ConnectionMode="LegacyConfiguration" CreatedAfterSolutionSupport="False" DisplayName="Send Outlook Desktop Mail Message" sap:VirtualizedContainerService.HintSize="416,327" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" Importance="High" IsBodyHtml="True" IsDraft="False" Sensitivity="Normal" Subject="Title Deed | Transaction Rows Not Found " To="[in_Config(&quot;MailTo&quot;).ToString]" UseISConnection="False">
                     <ui:SendOutlookMail.ConnectionDetailsBackupSlot>
                       <usau:BackupSlot x:TypeArguments="umae:ConnectionDetails" StoredValue="{x:Null}">
                         <usau:BackupSlot.BackupValues>
